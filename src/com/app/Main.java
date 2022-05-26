@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         teclado = new Scanner(System.in);
-        System.out.println("DALE Bo");
+
 
         teclado.close();
     }

@@ -6,7 +6,7 @@ public abstract class Producto{
     private float precio;
     private int stock;
     private  int cantLlevada;
-    private  int tipoProducto;   //1 Frio | 2 Seco
+    private  int tipoProducto; //1 Frio | 2 Seco
 
     public Producto(String nombreProduto, int id, float precio, int tipoProducto, int cantLlevada, int stock)
     {
