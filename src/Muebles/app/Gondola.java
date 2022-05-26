@@ -1,6 +1,6 @@
 package Muebles.app;
 
-public class Gondola extends Mueble implements I_Mueble{
+public class Gondola implements I_Mueble{
 
     public Gondola() {
     }
