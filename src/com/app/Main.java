@@ -9,7 +9,7 @@ public class Main {
         teclado = new Scanner(System.in);
 
         System.out.println("A ver si se cambio");
-        System.out.println("rulo puto");
+
 
         teclado.close();
     }
