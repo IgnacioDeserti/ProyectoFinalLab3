@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         teclado = new Scanner(System.in);
 
-        System.out.println("Ahora todo cambioooo, ahora es todo tan distintoooo");
+        System.out.println("Ahora todo cambioooo, ahora es t");
 
         teclado.close();
     }
