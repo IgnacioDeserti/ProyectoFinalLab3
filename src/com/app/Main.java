@@ -17,10 +17,6 @@ public class Main {
 
         ArrayList<Cliente> listaPersonas = new ArrayList<Cliente>();
 
-        System.out.println("puto el que lee");
-
-        System.out.println("boquitaaaa varelaaaa");
-
 
         teclado.close();
     }
