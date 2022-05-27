@@ -1,5 +1,12 @@
 package com.app;
 
+import Colecciones.ListaPersona;
+import Muebles.app.Gondola;
+import Persona.app.Cliente;
+import Persona.app.Persona;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +18,15 @@ public class Main {
         System.out.println("A ver si se cambio");
 
 
+        ArrayList<Cliente> listaPersonas = new ArrayList<Cliente>();
+
+        listaPersonas.add(new Cliente("Hola", 123));
+
+
+
         teclado.close();
     }
+
+
+
 }
