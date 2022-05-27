@@ -4,7 +4,7 @@ import Producto.app.Producto;
 
 import java.util.ArrayList;
 
-public class Cliente extends Persona implements I_MetodosPersona{
+public class Cliente extends Usuario implements I_MetodosPersona{
 
     private int idCliente;
     private ArrayList<Producto> changuito;
@@ -18,7 +18,7 @@ public class Cliente extends Persona implements I_MetodosPersona{
 
 
     @Override
-    public boolean registro(Persona persona) {
+    public boolean registro(Usuario usuario) {
         return false;
     }
 

@@ -1,7 +1,5 @@
 package Persona.app;
 
-import javax.swing.*;
-
 public class Admin extends Empleado implements I_MetodosPersona{
 
     public Admin(String nombreYapellido, int dni, String departamento, String password) {
@@ -10,7 +8,7 @@ public class Admin extends Empleado implements I_MetodosPersona{
 
 
     @Override
-    public boolean registro(Persona persona) {
+    public boolean registro(Usuario usuario) {
         return false;
     }
 

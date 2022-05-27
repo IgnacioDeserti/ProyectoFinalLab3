@@ -8,7 +8,7 @@ public class Cajero extends Empleado implements I_MetodosPersona{
 
 
     @Override
-    public boolean registro(Persona persona) {
+    public boolean registro(Usuario usuario) {
         return false;
     }
 
