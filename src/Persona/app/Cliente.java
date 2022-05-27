@@ -4,18 +4,26 @@ import Producto.app.Producto;
 
 import java.util.ArrayList;
 
-public class Cliente extends Persona{
+public class Cliente extends Persona implements I_MetodosPersona{
 
     private int idCliente;
     private ArrayList<Producto> changuito;
-    private int capacidad;
-    private int formaPago;  //0 para efectivo  |  1 para debito/transferencia  | 2 credito
+    private static int capacidad = 50;
 
-    public Cliente(String nombreYapellido, int dni, int idCliente, int capacidad, int formaPago) {
+    public Cliente(String nombreYapellido, int dni) {
         super(nombreYapellido, dni);
-        this.idCliente = idCliente;
+        this.idCliente = idCliente + 1;
         this.changuito = new ArrayList<>();
-        this.capacidad = capacidad;
-        this.formaPago = formaPago;
+    }
+
+
+    @Override
+    public boolean registro(Persona persona) {
+        return false;
+    }
+
+    @Override
+    public String listar() {
+        return null;
     }
 }
