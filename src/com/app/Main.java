@@ -19,6 +19,9 @@ public class Main {
 
         System.out.println("puto el que lee");
 
+        System.out.println("boquitaaaa varelaaaa");
+
+
         teclado.close();
     }
 
