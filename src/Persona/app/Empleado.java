@@ -1,6 +1,6 @@
 package Persona.app;
 
-public class Empleado extends Persona{
+public class Empleado extends Usuario {
     private String departamento;
 
 

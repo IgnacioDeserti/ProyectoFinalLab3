@@ -2,12 +2,11 @@ package Colecciones;
 
 import java.util.ArrayList;
 
-import Persona.app.I_MetodosPersona;
-import Persona.app.Persona;
+import Persona.app.Usuario;
 
 public class ListaPersona {
 
-    ArrayList<Persona> listaPersonas;
+    ArrayList<Usuario> listaUsuarios;
 
     public ListaPersona() {
 
