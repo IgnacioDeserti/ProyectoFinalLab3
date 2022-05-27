@@ -1,6 +1,6 @@
 package Persona.app;
 
-public abstract class Persona {
+public abstract class Persona{
     private String nombreYapellido;
     private int dni;
 
@@ -8,4 +8,7 @@ public abstract class Persona {
         this.nombreYapellido = nombreYapellido;
         this.dni = dni;
     }
+
+
+
 }

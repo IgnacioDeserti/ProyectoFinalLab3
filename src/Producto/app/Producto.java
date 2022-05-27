@@ -7,6 +7,7 @@ public abstract class Producto{
     private int stock;
     private  int cantLlevada;
     private  int tipoProducto; //1 Frio | 2 Seco
+    private boolean isDisponible;
 
     public Producto(String nombreProduto, int id, float precio, int tipoProducto, int cantLlevada, int stock)
     {
@@ -16,5 +17,16 @@ public abstract class Producto{
         this.tipoProducto = tipoProducto;
         this.cantLlevada = cantLlevada;
         this.stock = stock;
+        this.isDisponible = true;
     }
+
+    public void setDisponible(){
+        if (stock < 0){
+            isDisponible = false;
+        }
+    }
+
+    //public void verificarCantLlevada(){}
+
+
 }
