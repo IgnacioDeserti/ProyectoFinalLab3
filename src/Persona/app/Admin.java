@@ -3,7 +3,7 @@ package Persona.app;
 public class Admin extends Empleado implements I_MetodosPersona{
 
     public Admin(String nombreYapellido, int dni, String departamento, String password) {
-        super(nombreYapellido, dni, departamento);
+        super(nombreYapellido, dni, departamento, password);
     }
 
 

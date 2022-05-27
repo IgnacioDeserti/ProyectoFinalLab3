@@ -10,8 +10,8 @@ public class Cliente extends Usuario implements I_MetodosPersona{
     private ArrayList<Producto> changuito;
     private static int capacidad = 50;
 
-    public Cliente(String nombreYapellido, int dni) {
-        super(nombreYapellido, dni);
+    public Cliente(String nombreYapellido, int dni, String password) {
+        super(nombreYapellido, dni, password);
         this.idCliente = idCliente + 1;
         this.changuito = new ArrayList<>();
     }

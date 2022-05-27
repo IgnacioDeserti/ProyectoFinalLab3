@@ -2,8 +2,8 @@ package Persona.app;
 
 public class Cajero extends Empleado implements I_MetodosPersona{
 
-    public Cajero(String nombreYapellido, int dni, String departamento) {
-        super(nombreYapellido, dni, departamento);
+    public Cajero(String nombreYapellido, int dni, String departamento, String password) {
+        super(nombreYapellido, dni, departamento, password);
     }
 
 

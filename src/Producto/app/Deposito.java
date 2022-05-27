@@ -2,12 +2,12 @@ package Producto.app;
 
 import java.util.HashMap;
 
-public class Deposito {
+public class Deposito<T> {
 
-    HashMap<Integer, Producto> producto;
+    HashMap<Integer, T> hashMap;
 
     public Deposito() {
-        this.producto = new HashMap<Integer, Producto>();
+        this.hashMap = new HashMap<Integer, T>();
     }
 
     public void agregarProducto(){
