@@ -1,0 +1,1 @@
+[Cliente{idCliente=1, changuito=[]} Usuario{nombreYapellido='Ignacio Tosini', dni=44460448, password='zurdosiete'}]

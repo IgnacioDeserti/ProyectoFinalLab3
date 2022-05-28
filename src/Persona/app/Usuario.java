@@ -12,10 +12,4 @@ public abstract class Usuario {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "\n\nUsuario:" +
-                "\nNombre y Apellido: " + nombreYapellido+
-                "\nDNI: " + dni;
-    }
 }

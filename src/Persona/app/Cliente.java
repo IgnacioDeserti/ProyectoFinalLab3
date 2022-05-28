@@ -26,12 +26,4 @@ public class Cliente extends Usuario implements I_MetodosPersona{
     public String listar() {
         return null;
     }
-
-    @Override
-    public String toString() {
-        return  super.toString() +
-                "\n\nCliente:" +
-                "\nID Cliente: " + idCliente +
-                "\nChanguito: " + changuito;
-    }
 }
