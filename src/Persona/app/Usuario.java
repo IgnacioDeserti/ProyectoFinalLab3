@@ -12,4 +12,8 @@ public abstract class Usuario {
         this.password = password;
     }
 
+    public String toString() {
+        return "\n\nUsuario:\nNombre y Apellido: " + this.nombreYapellido + "\nDNI: " + this.dni;
+    }
+
 }
