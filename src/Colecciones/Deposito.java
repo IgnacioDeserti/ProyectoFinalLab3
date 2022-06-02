@@ -30,7 +30,7 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         }
     }
 
-    public void leerArchivo() {
+    public HashMap<Integer, Producto> leerArchivo(String nombreArchi) {
         try {
             int i = 0;
             FileInputStream fileInputStream = new FileInputStream("productos.bin");
@@ -48,7 +48,14 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         {
             e.printStackTrace();
         }
+
+        return productoHashMap;
     }
+
+    public void setProductoHashMap(HashMap<Integer, Producto> productoHashMap) {
+        this.productoHashMap = productoHashMap;
+    }
+
     @Override
     public int contar() {
         return productoHashMap.size();

@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public abstract class Producto implements Serializable {
     private String nombreProduto;
-    private static int id;
+    private static int contador;
+    private int id;
     private float precio;
     private int stock;
     private  int cantLlevada;
@@ -12,18 +13,13 @@ public abstract class Producto implements Serializable {
 
     public Producto(String nombreProduto, float precio, int cantLlevada, int stock)
     {
-        id++;
+        this.id = contador;
         this.nombreProduto = nombreProduto;
         this.precio = precio;
         this.cantLlevada = cantLlevada;
         this.stock = stock;
         this.isDisponible = true;
-    }
-
-    public void setDisponible(){
-        if (stock < 0){
-            isDisponible = false;
-        }
+        contador++;
     }
 
     public int getId() {
@@ -42,5 +38,26 @@ public abstract class Producto implements Serializable {
 
     //public void verificarCantLlevada(){}
 
+    //SETTERS----------------------------------
 
+
+    public void setNombreProduto(String nombreProduto) {
+        this.nombreProduto = nombreProduto;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public void setCantLlevada(int cantLlevada) {
+        this.cantLlevada = cantLlevada;
+    }
+
+    public void setDisponible(boolean disponible) {
+        isDisponible = disponible;
+    }
 }

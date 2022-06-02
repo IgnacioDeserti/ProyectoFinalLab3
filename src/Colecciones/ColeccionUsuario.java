@@ -1,11 +1,9 @@
 package Colecciones;
 
 import Persona.app.Usuario;
-import Producto.app.Producto;
 
 import java.io.*;
 import java.util.HashSet;
-import java.util.Map;
 
 public class ColeccionUsuario implements I_Coleccion<Usuario> {
 
@@ -31,7 +29,7 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
         }
     }
 
-    public void leerArchivo() {
+    public void leerArchivo(String a) {
         try {
             FileInputStream fileInputStream = new FileInputStream("usuarios.bin");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
