@@ -2,6 +2,7 @@ package com.app;
 
 import Colecciones.Deposito;
 import Colecciones.ColeccionUsuario;
+import InterfacesGraficas.app.PantallaInicio;
 import Persona.app.Admin;
 import Persona.app.Cliente;
 import Persona.app.Empleado;
@@ -20,6 +21,12 @@ public class Main {
 
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         Deposito deposito = new Deposito();
+        PantallaInicio pantallaInicio = new PantallaInicio();
+
+        pantallaInicio.setBounds(0,0,400,400);
+        pantallaInicio.setVisible(true); //Si queres que se vea true, si no false.
+        pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
+        pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
 
         /*
         coleccionUsuario.agregar(new Cliente("Ignacio Deserti", 44667880, "Papasito123"));
