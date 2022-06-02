@@ -4,7 +4,10 @@ import Colecciones.Deposito;
 import Colecciones.ColeccionUsuario;
 import Persona.app.Admin;
 import Persona.app.Cliente;
-import Persona.app.Usuario;
+import Persona.app.Empleado;
+import Producto.app.Bebida;
+import Producto.app.Comida;
+import Producto.app.Tecnologia;
 
 import java.util.Scanner;
 
@@ -43,7 +46,4 @@ public class Main {
 
         teclado.close();
     }
-
-
-
 }

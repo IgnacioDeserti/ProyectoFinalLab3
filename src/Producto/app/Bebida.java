@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Bebida extends Producto implements Serializable {
     private int ml;
 
-    public Bebida(String nombreProduto, int id, float precio, int tipoProducto, int cantLlevada, int stock, int ml) {
-        super(nombreProduto, id, precio, tipoProducto, cantLlevada, stock);
+    public Bebida(String nombreProduto, float precio, int cantLlevada, int stock, int ml) {
+        super(nombreProduto, precio, cantLlevada, stock);
         this.ml = ml;
     }
 
