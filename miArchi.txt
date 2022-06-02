@@ -1,9 +1,0 @@
-[
-
-Usuario:
-Nombre y Apellido: Ignacio Tosini
-DNI: 44460448
-
-Cliente:
-ID Cliente: 1
-Changuito: []]

@@ -1,11 +1,19 @@
 package Producto.app;
 
-public class Tecnologia extends Producto{
+import java.io.Serializable;
+
+public class Tecnologia extends Producto implements Serializable {
     private boolean isElectrico; //Si es a corriente o bateria
 
 
-    public Tecnologia(String nombreProduto, int id, float precio, int tipoProducto, int cantLlevada, int stock, boolean isElectrico) {
-        super(nombreProduto, id, precio, tipoProducto, cantLlevada, stock);
+    public Tecnologia(String nombreProduto, float precio, int cantLlevada, int stock, boolean isElectrico) {
+        super(nombreProduto, precio, cantLlevada, stock);
         this.isElectrico = isElectrico;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+                "\nIs Electrico: " + isElectrico;
     }
 }

@@ -1,11 +1,15 @@
 package Persona.app;
 
-public class Admin extends Empleado implements I_MetodosPersona{
+import java.io.Serializable;
 
-    public Admin(String nombreYapellido, int dni, String departamento, String password) {
-        super(nombreYapellido, dni, departamento, password);
+public class Admin extends Empleado implements I_MetodosPersona, Serializable {
+
+    private int codigoSecreto;
+
+    public Admin(String nombreYapellido, int dni, String password, String departamento, int codigoSecreto) {
+        super(nombreYapellido, dni, password, departamento);
+        this.codigoSecreto = codigoSecreto;
     }
-
 
     @Override
     public boolean registro(Usuario usuario) {
@@ -14,6 +18,12 @@ public class Admin extends Empleado implements I_MetodosPersona{
 
     @Override
     public String listar() {
-        return null;
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+                "\nCodigo Secreto: " + codigoSecreto;
     }
 }

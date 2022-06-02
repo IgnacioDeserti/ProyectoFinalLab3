@@ -1,6 +1,8 @@
 package Persona.app;
 
-public abstract class Usuario {
+import java.io.Serializable;
+
+public abstract class Usuario implements Serializable {
     private String nombreYapellido;
     private int dni;
     private String password;
@@ -13,7 +15,10 @@ public abstract class Usuario {
     }
 
     public String toString() {
-        return "\n\nUsuario:\nNombre y Apellido: " + this.nombreYapellido + "\nDNI: " + this.dni;
+        return "\n\nNombre y Apellido: " + this.nombreYapellido + "\nDNI: " + this.dni;
     }
 
+    public int getDni() {
+        return dni;
+    }
 }

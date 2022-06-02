@@ -2,9 +2,10 @@ package Persona.app;
 
 import Producto.app.Producto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cliente extends Usuario implements I_MetodosPersona{
+public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
 
     private int idCliente;
     private ArrayList<Producto> changuito;
@@ -24,6 +25,12 @@ public class Cliente extends Usuario implements I_MetodosPersona{
 
     @Override
     public String listar() {
-        return null;
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+                "\nId Cliente: " + idCliente;
     }
 }

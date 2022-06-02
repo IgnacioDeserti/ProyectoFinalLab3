@@ -1,20 +1,20 @@
 package Producto.app;
 
-public abstract class Producto{
+import java.io.Serializable;
+
+public abstract class Producto implements Serializable {
     private String nombreProduto;
-    private int id;
+    private static int id;
     private float precio;
     private int stock;
     private  int cantLlevada;
-    private  int tipoProducto; //1 Frio | 2 Seco
     private boolean isDisponible;
 
-    public Producto(String nombreProduto, int id, float precio, int tipoProducto, int cantLlevada, int stock)
+    public Producto(String nombreProduto, float precio, int cantLlevada, int stock)
     {
-        this.id = id;
+        id++;
         this.nombreProduto = nombreProduto;
         this.precio = precio;
-        this.tipoProducto = tipoProducto;
         this.cantLlevada = cantLlevada;
         this.stock = stock;
         this.isDisponible = true;
@@ -25,6 +25,20 @@ public abstract class Producto{
             isDisponible = false;
         }
     }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "\n\nNombre produto: " + nombreProduto +
+                "\nId: " + id +
+                "\nPrecio: " + precio +
+                "\nStock: " + stock +
+                "\nIs Disponible: " + isDisponible;
+    }
+
 
     //public void verificarCantLlevada(){}
 
