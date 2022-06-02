@@ -1,6 +1,8 @@
 package Producto.app;
 
-public class Comida extends Producto{
+import java.io.Serializable;
+
+public class Comida extends Producto implements Serializable {
     private float gramos;
     private  int tipoProducto; //1 Frio | 2 Seco
 
