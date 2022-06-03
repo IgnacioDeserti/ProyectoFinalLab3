@@ -21,4 +21,23 @@ public abstract class Usuario extends Exception implements Serializable {
     public int getDni() {
         return dni;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean equals(int dni, String password) {
+        if (dni == getDni() && password == getPassword()){
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nombreYapellido != null ? nombreYapellido.hashCode() : 0;
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        return result;
+    }
 }

@@ -59,7 +59,7 @@ public class Admin extends Usuario implements I_MetodosPersona, Serializable {
         return aux;
     }
 
-    public Comida modificoComida(Comida comida, Object object, int opcion){
+    public Comida modificoComida(Comida comida, Object object, int opcion) {
 
         try{
             switch(opcion)
@@ -78,6 +78,9 @@ public class Admin extends Usuario implements I_MetodosPersona, Serializable {
                 }
                 case 5-> {
                     comida.setTipoProducto((Integer) object);
+                }
+                default -> {
+                    throw new Exception();
                 }
             }
 
