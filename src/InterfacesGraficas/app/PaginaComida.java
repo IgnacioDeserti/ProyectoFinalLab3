@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class PaginaComida extends JFrame implements ActionListener, ItemListener {
-    private JTextField textField1, textField2, textField3;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
     private JScrollPane jScrollPane = new JScrollPane();
     private JButton button, button2;
     private JTextArea textArea = new JTextArea();

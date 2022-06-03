@@ -16,4 +16,11 @@ public class Tecnologia extends Producto implements Serializable {
         return super.toString()+
                 "\nIs Electrico: " + isElectrico;
     }
+
+    //SETTERS------------------------------------------------------------
+
+
+    public void setElectrico(boolean electrico) {
+        isElectrico = electrico;
+    }
 }

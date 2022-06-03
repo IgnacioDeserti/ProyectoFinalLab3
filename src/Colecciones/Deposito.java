@@ -14,10 +14,10 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
     }
 
 
-    public void cargarArchivo() {
+    public void cargarArchivo(String nombreArchivo) {
 
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("productos.bin");
+            FileOutputStream fileOutputStream = new FileOutputStream(nombreArchivo);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             for(int i = 0; i <= productoHashMap.size(); i++){
@@ -30,10 +30,10 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         }
     }
 
-    public HashMap<Integer, Producto> leerArchivo(String nombreArchi) {
+    public HashMap<Integer, Producto> leerArchivo(String nombreArchivo) {
         try {
             int i = 0;
-            FileInputStream fileInputStream = new FileInputStream("productos.bin");
+            FileInputStream fileInputStream = new FileInputStream(nombreArchivo);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             while (true) {
@@ -50,10 +50,6 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         }
 
         return productoHashMap;
-    }
-
-    public void setProductoHashMap(HashMap<Integer, Producto> productoHashMap) {
-        this.productoHashMap = productoHashMap;
     }
 
     @Override
@@ -102,4 +98,15 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         return "" + productoHashMap;
     }
 
+    //SETTERS--------------------------------------------------------
+    public void setProductoHashMap(HashMap<Integer, Producto> productoHashMap) {
+        this.productoHashMap = productoHashMap;
+    }
+
+    //GETTERS--------------------------------------------------------
+
+
+    public HashMap<Integer, Producto> getProductoHashMap() {
+        return productoHashMap;
+    }
 }

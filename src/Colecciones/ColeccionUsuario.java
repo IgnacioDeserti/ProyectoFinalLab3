@@ -29,7 +29,7 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
         }
     }
 
-    public void leerArchivo(String a) {
+    public void leerArchivo() {
         try {
             FileInputStream fileInputStream = new FileInputStream("usuarios.bin");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);

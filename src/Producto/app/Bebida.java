@@ -3,7 +3,7 @@ package Producto.app;
 import java.io.Serializable;
 
 public class Bebida extends Producto implements Serializable {
-    private int ml;
+    private Integer ml;
 
     public Bebida(String nombreProduto, float precio, int cantLlevada, int stock, int ml) {
         super(nombreProduto, precio, cantLlevada, stock);
@@ -14,5 +14,12 @@ public class Bebida extends Producto implements Serializable {
     public String toString() {
         return super.toString()+
                 "\nml: " + ml;
+    }
+
+    //SETTERS---------------------------------------------------------
+
+
+    public void setMl(int ml) {
+        this.ml = ml;
     }
 }

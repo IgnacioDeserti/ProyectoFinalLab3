@@ -2,7 +2,7 @@ package Persona.app;
 
 import java.io.Serializable;
 
-public abstract class Usuario implements Serializable {
+public abstract class Usuario extends Exception implements Serializable {
     private String nombreYapellido;
     private int dni;
     private String password;

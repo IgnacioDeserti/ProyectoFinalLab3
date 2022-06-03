@@ -15,7 +15,16 @@ public class Comida extends Producto implements Serializable {
     @Override
     public String toString() {
         return  super.toString()+
-                "\nGramos: " + gramos +
-                "\nTipo producto" + tipoProducto;
+                "\nGramos: " + gramos;
+    }
+
+    //SETTERS-----------------------------------------------------
+
+    public void setGramos(float gramos) {
+        this.gramos = gramos;
+    }
+
+    public void setTipoProducto(int tipoProducto) {
+        this.tipoProducto = tipoProducto;
     }
 }

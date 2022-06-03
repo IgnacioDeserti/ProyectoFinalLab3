@@ -1,17 +1,20 @@
 package Persona.app;
 
 import Colecciones.Deposito;
+import Producto.app.Bebida;
+import Producto.app.Comida;
 import Producto.app.Producto;
+import Producto.app.Tecnologia;
 
 import java.io.*;
 import java.util.HashMap;
 
-public class Admin extends Empleado implements I_MetodosPersona, Serializable {
+public class Admin extends Usuario implements I_MetodosPersona, Serializable {
 
     private int codigoSecreto;
 
-    public Admin(String nombreYapellido, int dni, String password, String departamento, int codigoSecreto) {
-        super(nombreYapellido, dni, password, departamento);
+    public Admin(String nombreYapellido, int dni, String password, int codigoSecreto) {
+        super(nombreYapellido, dni, password);
         this.codigoSecreto = codigoSecreto;
     }
 
@@ -56,11 +59,98 @@ public class Admin extends Empleado implements I_MetodosPersona, Serializable {
         return aux;
     }
 
-    public Producto modificoProducto(Producto producto, String nombre){
+    public Comida modificoComida(Comida comida, Object object, int opcion){
 
-        producto.setNombreProduto(nombre);
+        try{
+            switch(opcion)
+            {
+                case 1-> {
+                     comida.setPrecio((Float) object);
+                }
+                case 2-> {
+                    comida.setStock((Integer) object);
+                }
+                case 3-> {
+                    comida.setNombreProduto((String) object);
+                }
+                case 4-> {
+                    comida.setGramos((Float) object);
+                }
+                case 5-> {
+                    comida.setTipoProducto((Integer) object);
+                }
+            }
 
-        return producto;
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+        return comida;
     }
 
+    public Bebida modificoBebida(Bebida bebida, Object object, int opcion){
+
+        try{
+            switch(opcion)
+            {
+                case 1-> {
+                    bebida.setPrecio((Float) object);
+                }
+                case 2-> {
+                    bebida.setStock((Integer) object);
+                }
+                case 3-> {
+                    bebida.setNombreProduto((String) object);
+                }
+                case 4-> {
+                    bebida.setMl((Integer) object);
+                }
+            }
+
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+        return bebida;
+    }
+
+    public Tecnologia modificoTecnologia(Tecnologia tecnologia, Object object, int opcion){
+
+        try{
+            switch(opcion)
+            {
+                case 1-> {
+                    tecnologia.setPrecio((Float) object);
+                }
+                case 2-> {
+                    tecnologia.setStock((Integer) object);
+                }
+                case 3-> {
+                    tecnologia.setNombreProduto((String) object);
+                }
+                case 4-> {
+                    tecnologia.setElectrico((Boolean) object);
+                }
+            }
+
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+        return tecnologia;
+    }
+
+    public void guardarArchiModificado(String nombreArchi, Producto producto){
+        Deposito deposito = new Deposito();
+        deposito.setProductoHashMap(deposito.leerArchivo(nombreArchi));
+        HashMap<Integer, Producto> aux = deposito.getProductoHashMap();
+        aux.put(producto.getId(), producto);
+        deposito.setProductoHashMap(aux);
+        deposito.cargarArchivo(nombreArchi);
+    }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage() + " Numero incorrecto ";
+    }
 }

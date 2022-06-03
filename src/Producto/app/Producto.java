@@ -5,11 +5,11 @@ import java.io.Serializable;
 public abstract class Producto implements Serializable {
     private String nombreProduto;
     private static int contador;
-    private int id;
-    private float precio;
-    private int stock;
-    private  int cantLlevada;
-    private boolean isDisponible;
+    private Integer id;
+    private Float precio;
+    private Integer stock;
+    private Integer cantLlevada;
+    private Boolean isDisponible;
 
     public Producto(String nombreProduto, float precio, int cantLlevada, int stock)
     {
@@ -45,19 +45,12 @@ public abstract class Producto implements Serializable {
         this.nombreProduto = nombreProduto;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(Float precio) {
         this.precio = precio;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
-    public void setCantLlevada(int cantLlevada) {
-        this.cantLlevada = cantLlevada;
-    }
-
-    public void setDisponible(boolean disponible) {
-        isDisponible = disponible;
-    }
 }

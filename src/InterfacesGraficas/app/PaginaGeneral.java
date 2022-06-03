@@ -1,14 +1,15 @@
 package InterfacesGraficas.app;
 
 import javax.swing.*;
-import java.awt.event.*;
-import java.awt.*;
+import java.awt.event.ActionEvent;
 
-public class PaginaGeneral extends JFrame implements ActionListener {
-    private JMenuBar menuBar; //Solo se peude crear uno
-    private JMenu menu1;
-    private JMenuItem menuItem, menuItem2, menuItem3;
-    private JButton button;
+public class PaginaGeneral extends javax.swing.JFrame implements java.awt.event.ActionListener {
+        private javax.swing.JMenuBar menuBar;
+        private javax.swing.JMenu menu1;
+        private javax.swing.JMenuItem menuItem;
+        private javax.swing.JMenuItem menuItem2;
+        private javax.swing.JMenuItem menuItem3;
+        private javax.swing.JButton button;
 
     public PaginaGeneral()
     {
