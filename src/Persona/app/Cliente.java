@@ -59,8 +59,6 @@ public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
         return null;
     }
 
-    public
-
 
 
 }
