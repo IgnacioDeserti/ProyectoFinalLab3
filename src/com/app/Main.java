@@ -24,28 +24,19 @@ public class Main {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         Deposito deposito = new Deposito();
         PantallaInicio pantallaInicio = new PantallaInicio();
-        PaginaRegistro paginaRegistro = new PaginaRegistro();
         PaginaComida paginaComida = new PaginaComida();
         PaginaGeneral paginaGeneral = new PaginaGeneral();
 
-        /*pantallaInicio.setBounds(0,0,400,400);
+        pantallaInicio.setBounds(0,0,400,400);
         pantallaInicio.setVisible(true); //Si queres que se vea true, si no false.
         pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
         pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
-         */
-
-        paginaRegistro.setBounds(0,0,600,600);
-        paginaRegistro.setVisible(true);
-        paginaRegistro.setLocationRelativeTo(null);
-        paginaRegistro.setResizable(false);
-
 
         /*paginaComida.setBounds(0,0,600,600);
         paginaComida.setVisible(true);
         paginaComida.setLocationRelativeTo(null);
         paginaComida.setResizable(true);
          */
-
 
         /*paginaGeneral.setBounds(0,0,600,600);
         paginaGeneral.setVisible(true);

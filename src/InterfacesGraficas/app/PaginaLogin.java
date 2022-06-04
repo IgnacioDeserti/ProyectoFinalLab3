@@ -1,23 +1,21 @@
 package InterfacesGraficas.app;
 
-import Persona.app.*;
+import Persona.app.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Objects;
 
-public class PaginaRegistro extends JFrame implements ActionListener {
-    private JLabel label1, label2, label3, label4, label5; //Etiquetas
+public class PaginaLogin extends JFrame implements ActionListener{
+    private JLabel label1, label2, label3, label5; //Etiquetas
     private JButton cerrar, aceptar, volver;
-    private JTextField nya, dni, textField3;
+    private JTextField nya, dni;
     public static Usuario usuario;
 
-    public PaginaRegistro() {
+    public PaginaLogin() {
         setLayout(null);
 
-        setTitle("Registro");
+        setTitle("Login");
         getContentPane().setBackground(new Color(248, 248, 248, 255));
         ImageIcon imageIcon1 = new ImageIcon("src\\images\\CdeCarrefour.png");
         setIconImage(imageIcon1.getImage());
@@ -27,21 +25,17 @@ public class PaginaRegistro extends JFrame implements ActionListener {
         label5.setBounds(0,10,590,145);
         add(label5);
 
-        label1 = new JLabel("Bienvenido, registrese");
+        label1 = new JLabel("Bienvenido, haga su login");
         label1.setBounds(20,115,300,100);
         add(label1);
 
-        label2 = new JLabel("Ingrese su nombre y apellido");
+        label2 = new JLabel("Ingrese su dni");
         label2.setBounds(100,140,300,100);
         add(label2);
 
-        label3 = new JLabel("Ingrese su dni");
+        label3 = new JLabel("Ingrese su contraseña");
         label3.setBounds(100,190,300,100);
         add(label3);
-
-        label4 = new JLabel("Ingrese su contraseña");
-        label4.setBounds(100,250,300,100);
-        add(label4);
 
         nya = new JTextField();
         nya.setBounds(100, 210, 150, 20);
@@ -51,12 +45,8 @@ public class PaginaRegistro extends JFrame implements ActionListener {
         dni.setBounds(100, 260, 150, 20);
         add(dni);
 
-        textField3 = new JTextField();
-        textField3.setBounds(100, 310, 150, 20);
-        add(textField3);
-
         aceptar = new JButton("Aceptar");
-        aceptar.setBounds(50, 350, 100, 30);
+        aceptar.setBounds(50, 300, 100, 30);
         add(aceptar);
         aceptar.addActionListener(this);
 
@@ -83,26 +73,6 @@ public class PaginaRegistro extends JFrame implements ActionListener {
             pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
             pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
             this.setVisible(false);
-        }
-        if (e.getSource() == aceptar)
-        {
-            usuario.setNombreYapellido(nya.getText().trim());
-            if (Objects.equals(usuario.getNombreYapellido(), ""))
-            {
-                JOptionPane.showMessageDialog(null, "Debe ingresar algun valor en el campo nombre y apellido");
-            }else {
-                String docu = dni.getText();
-                if (docu.equals("")){
-                    JOptionPane.showMessageDialog(null, "Debe ingresar algun valor en el campo dni");
-                }else {
-                    /*int valor = validaInt(textField2.getText());
-                    usuario.getDni(valor);
-                    */
-                }
-                if (usuario.getDni() <= 0 && usuario.getDni() >99999999) {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar un dni valido en este campo");
-                }
-            }
         }
     }
 }

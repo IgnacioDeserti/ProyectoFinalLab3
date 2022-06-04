@@ -18,12 +18,28 @@ public abstract class Usuario extends Exception implements Serializable {
         return "\n\nNombre y Apellido: " + this.nombreYapellido + "\nDNI: " + this.dni;
     }
 
+    public String getNombreYapellido() {
+        return nombreYapellido;
+    }
+
     public int getDni() {
         return dni;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public void setNombreYapellido(String nombreYapellido) {
+        this.nombreYapellido = nombreYapellido;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean equals(int dni, String password) {
