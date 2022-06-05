@@ -10,6 +10,7 @@ public class PantallaInicio extends JFrame implements ActionListener {
 
     public PantallaInicio() {
         setLayout(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //para que el programa no se quede abierto en segundo plano
         label1 = new JLabel("Buenas, esta es la pantalla de Inicio");
         label1.setBounds(20,5,300,100);
         add(label1);

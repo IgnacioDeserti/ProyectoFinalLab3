@@ -14,7 +14,7 @@ public class PaginaLogin extends JFrame implements ActionListener{
 
     public PaginaLogin() {
         setLayout(null);
-
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //para que el programa no se quede abierto en segundo plano
         setTitle("Login");
         getContentPane().setBackground(new Color(248, 248, 248, 255));
         ImageIcon imageIcon1 = new ImageIcon("src\\images\\CdeCarrefour.png");

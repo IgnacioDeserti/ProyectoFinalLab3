@@ -1,17 +1,20 @@
 package Persona.app;
 
+import InterfacesGraficas.app.PaginaRegistro;
+
 import java.io.Serializable;
 
 public abstract class Usuario extends Exception implements Serializable {
     private String nombreYapellido;
     private int dni;
     private String password;
-
+    Usuario[] listaUsuarios;
 
     public Usuario(String nombreYapellido, int dni, String password) {
-        this.nombreYapellido = nombreYapellido;
-        this.dni = dni;
-        this.password = password;
+        PaginaRegistro usuarioRegistrado = new PaginaRegistro();
+        this.nombreYapellido = usuarioRegistrado.usuario.nombreYapellido;
+        this.dni = usuarioRegistrado.usuario.dni;
+        this.password = usuarioRegistrado.usuario.password;
     }
 
     public String toString() {

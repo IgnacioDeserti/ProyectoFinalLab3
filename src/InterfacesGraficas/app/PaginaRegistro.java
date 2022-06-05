@@ -12,7 +12,10 @@ public class PaginaRegistro extends JFrame implements ActionListener {
     private JLabel label1, label2, label3, label4, label5; //Etiquetas
     private JButton cerrar, aceptar, volver;
     private JTextField nya, dni, textField3;
-    public static Usuario usuario;
+    public Usuario usuario;
+    /*public static String nombre;
+    public static int documento;
+    public static String password;*/
 
     public PaginaRegistro() {
         setLayout(null);
@@ -95,14 +98,25 @@ public class PaginaRegistro extends JFrame implements ActionListener {
                 if (docu.equals("")){
                     JOptionPane.showMessageDialog(null, "Debe ingresar algun valor en el campo dni");
                 }else {
-                    /*int valor = validaInt(textField2.getText());
-                    usuario.getDni(valor);
-                    */
+                    int valor = validaInt(dni.getText());
+                    usuario.setDni(valor);
                 }
                 if (usuario.getDni() <= 0 && usuario.getDni() >99999999) {
                     JOptionPane.showMessageDialog(null, "Debe ingresar un dni valido en este campo");
                 }
             }
         }
+    }
+
+    public int validaInt(String number){
+        int result = 0; //Valor default.
+        try{
+            if(number != null){
+                result = Integer.parseInt(number);
+            }
+        }catch(NumberFormatException nfe){
+            //*No es numerico!
+        }
+        return result;
     }
 }

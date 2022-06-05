@@ -18,6 +18,7 @@ public class PaginaGeneral extends javax.swing.JFrame implements java.awt.event.
     public PaginaGeneral()
     {
         setLayout(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //para que el programa no se quede abierto en segundo plano
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 

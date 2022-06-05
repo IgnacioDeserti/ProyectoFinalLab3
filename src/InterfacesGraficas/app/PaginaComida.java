@@ -15,6 +15,7 @@ public class PaginaComida extends JFrame implements ActionListener, ItemListener
     public PaginaComida()
     {
         setLayout(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //para que el programa no se quede abierto en segundo plano
         comboBox = new JComboBox<>();
         comboBox.setBounds(5, 5, 100, 20);
         add(comboBox);

@@ -69,7 +69,7 @@ public class Main {
          */
 
 
-        Admin admin = new Admin("Lionel Messi", 1, "SoyDiosnel10", 10);
+        /*Admin admin = new Admin("Lionel Messi", 1, "SoyDiosnel10", 10);
 
         String nombreArchi = admin.elegirArchi(2);
 
@@ -84,7 +84,7 @@ public class Main {
 
         Deposito deposito1 = new Deposito();
         deposito1.leerArchivo(nombreArchi);
-        System.out.println(deposito1.mostrar());
+        System.out.println(deposito1.mostrar());*/
 
         teclado.close();
     }
