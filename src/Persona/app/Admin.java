@@ -156,4 +156,26 @@ public class Admin extends Usuario implements I_MetodosPersona, Serializable {
     public String getMessage() {
         return super.getMessage() + " Numero incorrecto ";
     }
+
+    public void menuModificacion(int op, Object object, int opcion){
+       String nombreArchi = elegirArchi(op);
+       Deposito deposito = new Deposito();
+       deposito.setProductoHashMap(deposito.leerArchivo(nombreArchi));
+        System.out.println(deposito.mostrar());
+        Producto producto = seleccionoProducto(0, nombreArchi);
+
+
+        if (producto instanceof Comida){
+            producto = modificoComida((Comida) producto, object, 3);
+        }
+        else if(producto instanceof Bebida){
+            System.out.println("holaaaa");
+            producto = modificoBebida((Bebida) producto, object, 3);
+        }
+        else{
+            producto = modificoTecnologia((Tecnologia) producto, object, 3);
+        }
+
+        guardarArchiModificado(nombreArchi, producto);
+    }
 }

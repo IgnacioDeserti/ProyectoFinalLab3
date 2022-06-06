@@ -1,6 +1,6 @@
 package Persona.app;
 
-import java.io.Serializable;
+import java.io.*;
 
 public abstract class Usuario extends Exception implements Serializable {
     private String nombreYapellido;
@@ -40,4 +40,29 @@ public abstract class Usuario extends Exception implements Serializable {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
+
+    public Usuario login(int dni, String password){
+        int flag = 0;
+        Usuario usuario = null;
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream("usuarios.bin");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            while (flag == 0 && (usuario = (Usuario) objectInputStream.readObject()) != null) {
+                if (usuario.equals(dni, password)){
+                    flag = 1;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return usuario;
+    }
+
+
 }

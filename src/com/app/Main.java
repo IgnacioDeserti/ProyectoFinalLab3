@@ -60,7 +60,7 @@ public class Main {
  */
 
 
-       // deposito.agregar(new Comida("Fideos", 14.99f, 2, 0,5, 12));
+        //deposito.agregar(new Comida("Fideos", 14.99f, 2, 0,5, 12));
         //deposito.agregar(new Comida("Hamburguesa", 15.99f, 1, 0,6, 12));
         //deposito.agregar(new Tecnologia("Televisor", 299.99f, 0, 2, true));
         //deposito.agregar(new Bebida("Coca cola", 10.99f,  0,3, 150));
@@ -78,20 +78,31 @@ public class Main {
 
         Admin admin = new Admin("Lionel Messi", 1, "SoyDiosnel10", 10);
 
-        String nombreArchi = admin.elegirArchi(2);
+        /*String nombreArchi = admin.elegirArchi(2);
+
+        deposito.setProductoHashMap(deposito.leerArchivo(nombreArchi));
+
+        System.out.println(deposito.mostrar());
 
         Producto producto = admin.seleccionoProducto(0, nombreArchi);
 
         //System.out.println(producto.toString());
 
-        producto = admin.modificoBebida((Bebida) producto, 30.01f, 1);
+        producto = admin.modificoBebida((Bebida) producto, 29.99f, 1);
         //System.out.println(producto.toString());
 
         admin.guardarArchiModificado(nombreArchi, producto);
 
+         */
+
+
+        admin.menuModificacion(2, "Coca Cola", 3);
         Deposito deposito1 = new Deposito();
-        deposito1.leerArchivo(nombreArchi);
+        deposito1.leerArchivo("bebida.bin");
         System.out.println(deposito1.mostrar());
+
+
+
 
         teclado.close();
     }
