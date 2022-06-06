@@ -1,68 +1,122 @@
 package InterfacesGraficas.app;
 
-import Persona.app.Usuario;
+import Persona.app.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class PaginaRegistro extends JFrame implements ActionListener {
-    //private ArrayList<JLabel> listaUsuarios = new ArrayList<>();
-    private JLabel label1, label2, label3, label4; //Etiquetas
-    private JButton button, button1, button2, button3, button4;
-    private JTextField textField1, textField2, textField3;
+    private JLabel label1, label2, label3, label4, label5; //Etiquetas
+    private JButton cerrar, aceptar, volver;
+    private JTextField nya, dni, textField3;
+    public Usuario usuario;
+    /*public static String nombre;
+    public static int documento;
+    public static String password;*/
 
     public PaginaRegistro() {
         setLayout(null);
-        label1 = new JLabel("Esta es la pantalla de registro de usuario");
-        label1.setBounds(20,0,300,100);
+
+        setTitle("Registro");
+        getContentPane().setBackground(new Color(248, 248, 248, 255));
+        ImageIcon imageIcon1 = new ImageIcon("src\\images\\CdeCarrefour.png");
+        setIconImage(imageIcon1.getImage());
+
+        ImageIcon imageIcon = new ImageIcon("src\\images\\ImagenDeFondo.png");
+        label5 = new JLabel(imageIcon);
+        label5.setBounds(0,10,590,145);
+        add(label5);
+
+        label1 = new JLabel("Bienvenido, registrese");
+        label1.setBounds(20,115,300,100);
         add(label1);
 
         label2 = new JLabel("Ingrese su nombre y apellido");
-        label2.setBounds(100,40,300,100);
+        label2.setBounds(100,140,300,100);
         add(label2);
 
         label3 = new JLabel("Ingrese su dni");
-        label3.setBounds(100,90,300,100);
+        label3.setBounds(100,190,300,100);
         add(label3);
 
         label4 = new JLabel("Ingrese su contraseña");
-        label4.setBounds(100,140,300,100);
+        label4.setBounds(100,250,300,100);
         add(label4);
 
-        textField1 = new JTextField();
-        textField1.setBounds(100, 110, 150, 20);
-        add(textField1);
+        nya = new JTextField();
+        nya.setBounds(100, 210, 150, 20);
+        add(nya);
 
-        textField2 = new JTextField();
-        textField2.setBounds(100, 160, 150, 20);
-        add(textField2);
+        dni = new JTextField();
+        dni.setBounds(100, 260, 150, 20);
+        add(dni);
 
         textField3 = new JTextField();
-        textField3.setBounds(100, 210, 150, 20);
+        textField3.setBounds(100, 310, 150, 20);
         add(textField3);
 
-        button2 = new JButton("Aceptar");
-        button2.setBounds(50, 250, 100, 30);
-        add(button2);
-        button2.addActionListener(this);
+        aceptar = new JButton("Aceptar");
+        aceptar.setBounds(50, 350, 100, 30);
+        add(aceptar);
+        aceptar.addActionListener(this);
 
-        button = new JButton("Cerrar");
-        button.setBounds(450, 500, 100, 30);
-        add(button);
-        button.addActionListener(this); //se le va a agregar un evento, esperando un click
+        cerrar = new JButton("Cerrar");
+        cerrar.setBounds(450, 500, 100, 30);
+        add(cerrar);
+        cerrar.addActionListener(this); //se le va a agregar un evento, esperando un click
+
+        volver = new JButton("Volver");
+        volver.setBounds(50, 500, 100, 30);
+        add(volver);
+        volver.addActionListener(this); //se le va a agregar un evento, esperando un click
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == button) {
+        if (e.getSource() == cerrar) {
             System.exit(0);
-        } else if (e.getSource() == button2)
-        {
-            /*Usuario listaUsuarios = new Usuario;
-            listaUsuarios = Usuario.(textField1.getText());*/
-
         }
+        if (e.getSource() == volver) {
+            PantallaInicio pantallaInicio = new PantallaInicio();
+            pantallaInicio.setBounds(0,0,400,400);
+            pantallaInicio.setVisible(true); //Si queres que se vea true, si no false.
+            pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
+            pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
+            this.setVisible(false);
+        }
+        if (e.getSource() == aceptar)
+        {
+            usuario.setNombreYapellido(nya.getText().trim());
+            if (Objects.equals(usuario.getNombreYapellido(), ""))
+            {
+                JOptionPane.showMessageDialog(null, "Debe ingresar algun valor en el campo nombre y apellido");
+            }else {
+                String docu = dni.getText();
+                if (docu.equals("")){
+                    JOptionPane.showMessageDialog(null, "Debe ingresar algun valor en el campo dni");
+                }else {
+                    int valor = validaInt(dni.getText());
+                    usuario.setDni(valor);
+                }
+                if (usuario.getDni() <= 0 && usuario.getDni() >99999999) {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un dni valido en este campo");
+                }
+            }
+        }
+    }
+
+    public int validaInt(String number){
+        int result = 0; //Valor default.
+        try{
+            if(number != null){
+                result = Integer.parseInt(number);
+            }
+        }catch(NumberFormatException nfe){
+            //*No es numerico!
+        }
+        return result;
     }
 }

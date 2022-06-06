@@ -24,32 +24,25 @@ public class Main {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         Deposito deposito = new Deposito();
         PantallaInicio pantallaInicio = new PantallaInicio();
-        PaginaRegistro paginaRegistro = new PaginaRegistro();
         PaginaComida paginaComida = new PaginaComida();
         PaginaGeneral paginaGeneral = new PaginaGeneral();
 
-        /*pantallaInicio.setBounds(0,0,400,400);
+        pantallaInicio.setBounds(0,0,400,400);
         pantallaInicio.setVisible(true); //Si queres que se vea true, si no false.
         pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
         pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
-         */
-/*
-        paginaRegistro.setBounds(0,0,600,600);
-        paginaRegistro.setVisible(true);
-        paginaRegistro.setLocationRelativeTo(null);
-        paginaRegistro.setResizable(false);
- */
 
         /*paginaComida.setBounds(0,0,600,600);
         paginaComida.setVisible(true);
         paginaComida.setLocationRelativeTo(null);
-        paginaComida.setResizable(false);
+        paginaComida.setResizable(true);
          */
 
         /*paginaGeneral.setBounds(0,0,600,600);
         paginaGeneral.setVisible(true);
         paginaGeneral.setLocationRelativeTo(null);
          */
+
 
 
 /*
@@ -60,7 +53,7 @@ public class Main {
  */
 
 
-        //deposito.agregar(new Comida("Fideos", 14.99f, 2, 0,5, 12));
+       // deposito.agregar(new Comida("Fideos", 14.99f, 2, 0,5, 12));
         //deposito.agregar(new Comida("Hamburguesa", 15.99f, 1, 0,6, 12));
         //deposito.agregar(new Tecnologia("Televisor", 299.99f, 0, 2, true));
         //deposito.agregar(new Bebida("Coca cola", 10.99f,  0,3, 150));
@@ -76,33 +69,22 @@ public class Main {
          */
 
 
-        Admin admin = new Admin("Lionel Messi", 1, "SoyDiosnel10", 10);
+        /*Admin admin = new Admin("Lionel Messi", 1, "SoyDiosnel10", 10);
 
-        /*String nombreArchi = admin.elegirArchi(2);
-
-        deposito.setProductoHashMap(deposito.leerArchivo(nombreArchi));
-
-        System.out.println(deposito.mostrar());
+        String nombreArchi = admin.elegirArchi(2);
 
         Producto producto = admin.seleccionoProducto(0, nombreArchi);
 
         //System.out.println(producto.toString());
 
-        producto = admin.modificoBebida((Bebida) producto, 29.99f, 1);
+        producto = admin.modificoBebida((Bebida) producto, 30.01f, 1);
         //System.out.println(producto.toString());
 
         admin.guardarArchiModificado(nombreArchi, producto);
 
-         */
-
-
-        admin.menuModificacion(2, "Coca Cola", 3);
         Deposito deposito1 = new Deposito();
-        deposito1.leerArchivo("bebida.bin");
-        System.out.println(deposito1.mostrar());
-
-
-
+        deposito1.leerArchivo(nombreArchi);
+        System.out.println(deposito1.mostrar());*/
 
         teclado.close();
     }

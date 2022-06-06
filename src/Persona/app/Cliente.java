@@ -1,6 +1,7 @@
 package Persona.app;
 
 import Producto.app.Producto;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -9,14 +10,13 @@ public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
     private int idCliente;
     private ArrayList<Producto> changuito;
     private static int capacidad = 50;
-    private static int contador;
 
     public Cliente(String nombreYapellido, int dni, String password) {
         super(nombreYapellido, dni, password);
-        this.idCliente = contador;
+        this.idCliente = idCliente + 1;
         this.changuito = new ArrayList<>();
-        contador++;
     }
+
 
     @Override
     public boolean registro(Usuario usuario) {
@@ -58,5 +58,7 @@ public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
 
         return null;
     }
+
+
 
 }
