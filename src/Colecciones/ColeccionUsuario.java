@@ -37,7 +37,6 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             while (true) {
-                System.out.println("HOLAAAAA");
                 Usuario usuario = (Usuario) objectInputStream.readObject();
                 usuariosHashMap.put(i, usuario);
                 i++;
