@@ -8,6 +8,7 @@ import Producto.app.Tecnologia;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Admin extends Usuario implements I_MetodosPersona, Serializable {
 
@@ -49,10 +50,15 @@ public class Admin extends Usuario implements I_MetodosPersona, Serializable {
         return nombreArchi;
     }
 
+    public void leerArchivoAux(String nombreArchi){
+        Deposito deposito = new Deposito();
+        deposito.leerArchivo(nombreArchi);
+    }
+
     public Producto seleccionoProducto(int id, String nombreArchivo){
 
         Deposito deposito = new Deposito();
-        deposito.setProductoHashMap(deposito.leerArchivo(nombreArchivo));
+        deposito.setProductoHashSet(deposito.leerArchivo(nombreArchivo));
 
         Producto aux = deposito.buscar(id);
 
@@ -143,12 +149,23 @@ public class Admin extends Usuario implements I_MetodosPersona, Serializable {
         return tecnologia;
     }
 
+    public boolean eliminoParaReemplazar(int id, String nombreArchi){
+        Deposito deposito = new Deposito();
+        deposito.setProductoHashSet(deposito.leerArchivo(nombreArchi));
+        Producto producto = deposito.buscar(id);
+        if (producto != null){
+            deposito.eliminar(producto.getId());
+            deposito.cargarArchivo(nombreArchi);
+            return true;
+        }
+
+        return false;
+    }
+
     public void guardarArchiModificado(String nombreArchi, Producto producto){
         Deposito deposito = new Deposito();
-        deposito.setProductoHashMap(deposito.leerArchivo(nombreArchi));
-        HashMap<Integer, Producto> aux = deposito.getProductoHashMap();
-        aux.put(producto.getId(), producto);
-        deposito.setProductoHashMap(aux);
+        deposito.setProductoHashSet(deposito.leerArchivo(nombreArchi));
+        deposito.agregar(producto);
         deposito.cargarArchivo(nombreArchi);
     }
 
@@ -160,22 +177,42 @@ public class Admin extends Usuario implements I_MetodosPersona, Serializable {
     public void menuModificacion(int op, Object object, int opcion){
        String nombreArchi = elegirArchi(op);
        Deposito deposito = new Deposito();
-       deposito.setProductoHashMap(deposito.leerArchivo(nombreArchi));
+       deposito.setProductoHashSet(deposito.leerArchivo(nombreArchi));
         System.out.println(deposito.mostrar());
         Producto producto = seleccionoProducto(0, nombreArchi);
 
 
         if (producto instanceof Comida){
-            producto = modificoComida((Comida) producto, object, 3);
+            producto = modificoComida((Comida) producto, object, opcion);
         }
         else if(producto instanceof Bebida){
-            System.out.println("holaaaa");
-            producto = modificoBebida((Bebida) producto, object, 3);
+            producto = modificoBebida((Bebida) producto, object, opcion);
         }
         else{
-            producto = modificoTecnologia((Tecnologia) producto, object, 3);
+            producto = modificoTecnologia((Tecnologia) producto, object, opcion);
         }
 
         guardarArchiModificado(nombreArchi, producto);
+    }
+
+    public void agregarProducto(String nombreArchi, Producto producto){
+        Deposito deposito = new Deposito();
+        deposito.setProductoHashSet(deposito.leerArchivo(nombreArchi));
+        producto.setId(deposito.contar());
+        deposito.agregar(producto);
+        deposito.cargarArchivo(nombreArchi);
+    }
+
+    public void menuAgregar(int op, Producto producto){
+        String nombreArchi = elegirArchi(op);
+        agregarProducto(nombreArchi, producto);
+    }
+
+    public boolean eliminarProducto(String nombreArchi, int id){
+        Deposito deposito = new Deposito();
+        deposito.setProductoHashSet(deposito.leerArchivo(nombreArchi));
+        boolean rta = deposito.eliminar(id);
+        deposito.cargarArchivo(nombreArchi);
+        return rta;
     }
 }

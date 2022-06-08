@@ -3,24 +3,25 @@ package Colecciones;
 import Persona.app.Usuario;
 
 import java.io.*;
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class ColeccionUsuario implements I_Coleccion<Usuario> {
 
-    HashSet<Usuario> usuariosHashSet;
+    HashMap<Integer, Usuario> usuariosHashMap;
 
     public ColeccionUsuario() {
-        this.usuariosHashSet  = new HashSet<>();
+        this.usuariosHashMap  = new HashMap<>();
     }
 
     public void cargarArchivo() {
-
+        int i = 0;
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("usuarios.bin");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-            for(Usuario usuario : usuariosHashSet) {
-                objectOutputStream.writeObject(usuario);
+            while (i < usuariosHashMap.size()){
+                objectOutputStream.writeObject(usuariosHashMap.get(i));
+                i++;
             }
 
             objectOutputStream.close();
@@ -30,12 +31,16 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
     }
 
     public void leerArchivo() {
+        int i = 0;
         try {
             FileInputStream fileInputStream = new FileInputStream("usuarios.bin");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             while (true) {
-                usuariosHashSet.add((Usuario) objectInputStream.readObject());
+                System.out.println("HOLAAAAA");
+                Usuario usuario = (Usuario) objectInputStream.readObject();
+                usuariosHashMap.put(i, usuario);
+                i++;
             }
         }catch (EOFException e) {
             System.out.println("");
@@ -50,20 +55,21 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
 
     public boolean agregar(Usuario persona) {
         boolean rta = false;
+        int i = contar();
         Usuario aux = buscar(persona.getDni());
         if (aux == null) {
-            usuariosHashSet.add(persona);
+            usuariosHashMap.put(i, persona);
             rta = true;
         }
         return rta;
     }
 
     @Override
-    public boolean eliminar(int dni) {
+    public boolean eliminar(int id) {
         boolean rta = false;
-        Usuario aux = buscar(dni);
+        Usuario aux = buscar(id);
         if (aux != null) {
-            usuariosHashSet.remove(aux);
+            usuariosHashMap.remove(id);
             rta = true;
         }
 
@@ -71,28 +77,26 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
     }
 
     @Override
-    public Usuario buscar(int dni) {
+    public Usuario buscar(int id) {
         Usuario encontrada = null;
-        for (Usuario p : usuariosHashSet) {
-            if (p.getDni() == dni) {
-                encontrada = p;
-            }
+        if (usuariosHashMap.containsKey(id)){
+            encontrada = usuariosHashMap.get(id);
         }
         return encontrada;
     }
 
     @Override
     public String mostrar() {
-        return usuariosHashSet.toString();
+        return usuariosHashMap.toString();
     }
 
     @Override
     public int contar() {
-        return usuariosHashSet.size();
+        return usuariosHashMap.size();
     }
 
     @Override
     public String toString() {
-        return "" + usuariosHashSet;
+        return "" + usuariosHashMap;
     }
 }

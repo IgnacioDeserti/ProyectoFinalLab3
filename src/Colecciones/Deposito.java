@@ -4,13 +4,16 @@ import Producto.app.Producto;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Deposito implements I_Coleccion<Producto>, Serializable {
 
-    HashMap<Integer, Producto> productoHashMap;
+   HashSet<Producto> productoHashSet;
 
     public Deposito() {
-        this.productoHashMap = new HashMap<Integer, Producto>();
+        this.productoHashSet = new HashSet<>();
     }
 
 
@@ -19,9 +22,8 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(nombreArchivo);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-            for(int i = 0; i <= productoHashMap.size(); i++){
-                objectOutputStream.writeObject((Producto) productoHashMap.get(i));
+            for (Producto producto: productoHashSet) {
+                objectOutputStream.writeObject((Producto) producto);
             }
 
             objectOutputStream.close();
@@ -30,16 +32,14 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         }
     }
 
-    public HashMap<Integer, Producto> leerArchivo(String nombreArchivo) {
+    public HashSet<Producto> leerArchivo(String nombreArchivo) {
         try {
-            int i = 0;
             FileInputStream fileInputStream = new FileInputStream(nombreArchivo);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             while (true) {
                 Producto producto = (Producto) objectInputStream.readObject();
-                productoHashMap.put(i , producto);
-                i++;
+                productoHashSet.add(producto);
             }
         }catch (EOFException e) {
             System.out.println("");
@@ -49,12 +49,12 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
             e.printStackTrace();
         }
 
-        return productoHashMap;
+        return productoHashSet;
     }
 
     @Override
     public int contar() {
-        return productoHashMap.size();
+        return productoHashSet.size();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         boolean rta = false;
         Producto aux = buscar(id);
         if (aux != null) {
-            productoHashMap.remove(id);
+            productoHashSet.remove(aux);
             rta = true;
         }
         return rta;
@@ -71,42 +71,42 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
     @Override
     public Producto buscar(int aux) {
         Producto encontrada = null;
-        if (productoHashMap.containsKey(aux)) {
-            encontrada = productoHashMap.get(aux);
+        for (Producto producto: productoHashSet) {
+            if (producto.getId() == aux){
+                encontrada = producto;
+            }
         }
         return encontrada;
     }
 
     @Override
     public String mostrar() {
-        return productoHashMap.toString();
+        return productoHashSet.toString();
     }
 
     @Override
     public boolean agregar(Producto producto) {
         boolean rta = false;
-        Producto aux = (Producto) buscar((producto.getId()));
+        Producto aux = buscar((producto.getId()));
         if (aux == null) {
-            productoHashMap.put(producto.getId(), producto);
+            productoHashSet.add(producto);
             rta = true;
         }
-
         return rta;
     }
 
     public String toString() {
-        return "" + productoHashMap;
+        return "" + productoHashSet;
     }
 
     //SETTERS--------------------------------------------------------
-    public void setProductoHashMap(HashMap<Integer, Producto> productoHashMap) {
-        this.productoHashMap = productoHashMap;
+    public void setProductoHashSet(HashSet<Producto> productoHashSet) {
+        this.productoHashSet = productoHashSet;
     }
 
     //GETTERS--------------------------------------------------------
 
-
-    public HashMap<Integer, Producto> getProductoHashMap() {
-        return productoHashMap;
+    public HashSet<Producto> getProductoHashMap() {
+        return productoHashSet;
     }
 }

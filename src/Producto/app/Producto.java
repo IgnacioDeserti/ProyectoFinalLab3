@@ -53,4 +53,7 @@ public abstract class Producto implements Serializable {
         this.stock = stock;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

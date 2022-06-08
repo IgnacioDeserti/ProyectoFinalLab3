@@ -7,13 +7,11 @@ import java.util.ArrayList;
 
 public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
 
-    private int idCliente;
     private ArrayList<Producto> changuito;
     private static int capacidad = 50;
 
     public Cliente(String nombreYapellido, int dni, String password) {
         super(nombreYapellido, dni, password);
-        this.idCliente = idCliente + 1;
         this.changuito = new ArrayList<>();
     }
 
@@ -30,8 +28,7 @@ public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
 
     @Override
     public String toString() {
-        return super.toString()+
-                "\nId Cliente: " + idCliente;
+        return super.toString();
     }
 
     public Cliente registro(int dni, String password){
