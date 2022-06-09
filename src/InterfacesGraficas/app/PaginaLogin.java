@@ -9,7 +9,9 @@ import java.awt.event.*;
 public class PaginaLogin extends JFrame implements ActionListener{
     private JLabel label1, label2, label3, label5; //Etiquetas
     private JButton cerrar, aceptar, volver;
-    private JTextField nya, dni;
+    private JTextField nya;
+    private JPasswordField password;
+    private JCheckBox mostrarContraseña;
     public static Usuario usuario;
 
     public PaginaLogin() {
@@ -41,9 +43,14 @@ public class PaginaLogin extends JFrame implements ActionListener{
         nya.setBounds(100, 210, 150, 20);
         add(nya);
 
-        dni = new JTextField();
-        dni.setBounds(100, 260, 150, 20);
-        add(dni);
+        password = new JPasswordField();
+        password.setBounds(100, 260, 150, 20);
+        add(password);
+
+        mostrarContraseña = new JCheckBox("Mostrar Contraseña");
+        mostrarContraseña.setBounds(170, 285, 150, 30);
+        add(mostrarContraseña);
+        mostrarContraseña.addActionListener(this);
 
         aceptar = new JButton("Aceptar");
         aceptar.setBounds(50, 300, 100, 30);
@@ -73,6 +80,11 @@ public class PaginaLogin extends JFrame implements ActionListener{
             pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
             pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
             this.setVisible(false);
+        }
+        if (mostrarContraseña.isSelected()){
+            password.setEchoChar((char) 0);
+        }else {
+            password.setEchoChar('*');
         }
     }
 }

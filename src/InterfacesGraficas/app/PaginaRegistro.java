@@ -1,5 +1,6 @@
 package InterfacesGraficas.app;
 
+import Colecciones.ColeccionUsuario;
 import Persona.app.*;
 
 import javax.swing.*;
@@ -11,8 +12,9 @@ import java.util.Objects;
 public class PaginaRegistro extends JFrame implements ActionListener {
     private JLabel label1, label2, label3, label4, label5; //Etiquetas
     private JButton cerrar, aceptar, volver;
-    private JTextField nya, dni, textField3;
-    public Usuario usuario;
+    private JTextField nya, dni;
+    private JPasswordField password;
+    private JCheckBox mostrarContraseña;
     /*public static String nombre;
     public static int documento;
     public static String password;*/
@@ -54,9 +56,14 @@ public class PaginaRegistro extends JFrame implements ActionListener {
         dni.setBounds(100, 260, 150, 20);
         add(dni);
 
-        textField3 = new JTextField();
-        textField3.setBounds(100, 310, 150, 20);
-        add(textField3);
+        password = new JPasswordField();
+        password.setBounds(100, 310, 150, 20);
+        add(password);
+
+        mostrarContraseña = new JCheckBox("Mostrar Contraseña");
+        mostrarContraseña.setBounds(160, 340, 150, 30);
+        add(mostrarContraseña);
+        mostrarContraseña.addActionListener(this);
 
         aceptar = new JButton("Aceptar");
         aceptar.setBounds(50, 350, 100, 30);
@@ -76,6 +83,7 @@ public class PaginaRegistro extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Usuario usuario = null;
         if (e.getSource() == cerrar) {
             System.exit(0);
         }
@@ -100,11 +108,23 @@ public class PaginaRegistro extends JFrame implements ActionListener {
                 }else {
                     int valor = validaInt(dni.getText());
                     usuario.setDni(valor);
+                    usuario.setPassword(String.valueOf(password.getPassword()));
                 }
                 if (usuario.getDni() <= 0 && usuario.getDni() >99999999) {
                     JOptionPane.showMessageDialog(null, "Debe ingresar un dni valido en este campo");
+                } else if (Objects.equals(usuario.getPassword(), ""))
+                {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar algun valor en el campo Contraseña");
                 }
             }
+            ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
+            //while (coleccionUsuario.)
+            //if()
+        }
+        if (mostrarContraseña.isSelected()){
+            password.setEchoChar((char) 0);
+        }else {
+            password.setEchoChar('*');
         }
     }
 
