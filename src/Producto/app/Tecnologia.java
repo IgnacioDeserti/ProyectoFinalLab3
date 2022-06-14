@@ -6,8 +6,8 @@ public class Tecnologia extends Producto implements Serializable {
     private boolean isElectrico; //Si es a corriente o bateria
 
 
-    public Tecnologia(String nombreProduto, float precio, int cantLlevada, int stock, boolean isElectrico) {
-        super(nombreProduto, precio, cantLlevada, stock);
+    public Tecnologia(String nombreProduto, float precio, int stock, boolean isElectrico) {
+        super(nombreProduto, precio, stock);
         this.isElectrico = isElectrico;
     }
 
@@ -19,8 +19,14 @@ public class Tecnologia extends Producto implements Serializable {
 
     //SETTERS------------------------------------------------------------
 
-
     public void setElectrico(boolean electrico) {
         isElectrico = electrico;
+    }
+
+    //GETTERS------------------------------------------------------------
+
+
+    public boolean isElectrico() {
+        return isElectrico;
     }
 }

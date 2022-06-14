@@ -11,12 +11,12 @@ public abstract class Producto implements Serializable {
     private Integer cantLlevada;
     private Boolean isDisponible;
 
-    public Producto(String nombreProduto, float precio, int cantLlevada, int stock)
+    public Producto(String nombreProduto, float precio, int stock)
     {
         this.id = contador;
         this.nombreProduto = nombreProduto;
         this.precio = precio;
-        this.cantLlevada = cantLlevada;
+        this.cantLlevada = 0;
         this.stock = stock;
         this.isDisponible = true;
         contador++;
@@ -35,8 +35,12 @@ public abstract class Producto implements Serializable {
                 "\nIs Disponible: " + isDisponible;
     }
 
-
-    //public void verificarCantLlevada(){}
+    @Override
+    public int hashCode() {
+        int result = nombreProduto.hashCode();
+        result = 31 * result + precio.hashCode();
+        return result;
+    }
 
     //SETTERS----------------------------------
 
@@ -51,9 +55,34 @@ public abstract class Producto implements Serializable {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+        if (this.stock == 0){
+            setDisponible(false);
+        }
+    }
+
+    public void setDisponible(Boolean disponible) {
+        isDisponible = disponible;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setCantLlevada(Integer cantLlevada) {
+        this.cantLlevada = cantLlevada;
+    }
+
+    //GETTERS--------------------------------
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public Integer getCantLlevada() {
+        return cantLlevada;
+    }
+
+    public Float getPrecio() {
+        return precio * cantLlevada;
     }
 }

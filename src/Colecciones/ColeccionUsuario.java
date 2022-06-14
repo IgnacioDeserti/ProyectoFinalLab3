@@ -1,9 +1,10 @@
 package Colecciones;
 
-import Persona.app.Usuario;
+import Usuario.app.Usuario;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ColeccionUsuario implements I_Coleccion<Usuario> {
 
@@ -13,15 +14,16 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
         this.usuariosHashMap  = new HashMap<>();
     }
 
-    public void cargarArchivo() {
-        int i = 0;
+    @Override
+    public void cargarArchivo(String nombreArchivo) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("usuarios.bin");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-            while (i < usuariosHashMap.size()){
-                objectOutputStream.writeObject(usuariosHashMap.get(i));
-                i++;
+            Usuario usuario = null;
+            Integer i = 0;
+            for (Map.Entry<Integer, Usuario> entry : usuariosHashMap.entrySet()){
+                objectOutputStream.writeObject(entry.getValue());
             }
 
             objectOutputStream.close();
@@ -30,16 +32,15 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
         }
     }
 
-    public void leerArchivo() {
-        int i = 0;
+    @Override
+    public HashMap<Integer, Usuario> leerArchivo(String nombreArchivo) {
         try {
             FileInputStream fileInputStream = new FileInputStream("usuarios.bin");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             while (true) {
                 Usuario usuario = (Usuario) objectInputStream.readObject();
-                usuariosHashMap.put(i, usuario);
-                i++;
+                usuariosHashMap.put(usuario.getDni(), usuario);
             }
         }catch (EOFException e) {
             System.out.println("");
@@ -48,16 +49,17 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
         {
             e.printStackTrace();
         }
+        return usuariosHashMap;
     }
 
     @Override
 
     public boolean agregar(Usuario persona) {
         boolean rta = false;
-        int i = contar();
         Usuario aux = buscar(persona.getDni());
         if (aux == null) {
-            usuariosHashMap.put(i, persona);
+            persona.setIdUsuario(contar());
+            usuariosHashMap.put(persona.getDni(), persona);
             rta = true;
         }
         return rta;
@@ -76,10 +78,10 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
     }
 
     @Override
-    public Usuario buscar(int id) {
+    public Usuario buscar(int dni) {
         Usuario encontrada = null;
-        if (usuariosHashMap.containsKey(id)){
-            encontrada = usuariosHashMap.get(id);
+        if (usuariosHashMap.containsKey(dni)){
+            encontrada = usuariosHashMap.get(dni);
         }
         return encontrada;
     }
@@ -97,5 +99,11 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
     @Override
     public String toString() {
         return "" + usuariosHashMap;
+    }
+
+    //SETTERS--------------------------------------------------------
+
+    public void setUsuariosHashMap(HashMap<Integer, Usuario> usuariosHashMap) {
+        this.usuariosHashMap = usuariosHashMap;
     }
 }

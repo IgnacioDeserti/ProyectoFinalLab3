@@ -6,8 +6,8 @@ public class Comida extends Producto implements Serializable {
     private float gramos;
     private  int tipoProducto; //1 Frio | 2 Seco
 
-    public Comida(String nombreProduto, float precio, int tipoProducto, int cantLlevada, int stock, float gramos) {
-        super(nombreProduto, precio, cantLlevada, stock);
+    public Comida(String nombreProduto, float precio, int tipoProducto, int stock, float gramos) {
+        super(nombreProduto, precio, stock);
         this.gramos = gramos;
         this.tipoProducto = tipoProducto;
     }

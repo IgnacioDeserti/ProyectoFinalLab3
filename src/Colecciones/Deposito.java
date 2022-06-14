@@ -16,9 +16,8 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         this.productoHashSet = new HashSet<>();
     }
 
-
+    @Override
     public void cargarArchivo(String nombreArchivo) {
-
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(nombreArchivo);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -32,6 +31,7 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         }
     }
 
+    @Override
     public HashSet<Producto> leerArchivo(String nombreArchivo) {
         try {
             FileInputStream fileInputStream = new FileInputStream(nombreArchivo);
@@ -46,7 +46,7 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
 
         } catch(IOException | ClassNotFoundException e)
         {
-            e.printStackTrace();
+            e.getMessage();
         }
 
         return productoHashSet;
@@ -65,6 +65,7 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
             productoHashSet.remove(aux);
             rta = true;
         }
+
         return rta;
     }
 
@@ -72,7 +73,7 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
     public Producto buscar(int aux) {
         Producto encontrada = null;
         for (Producto producto: productoHashSet) {
-            if (producto.getId() == aux){
+            if (producto.getId() == (int) aux){
                 encontrada = producto;
             }
         }
@@ -87,6 +88,7 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
     @Override
     public boolean agregar(Producto producto) {
         boolean rta = false;
+        producto.setId(contar());
         Producto aux = buscar((producto.getId()));
         if (aux == null) {
             productoHashSet.add(producto);
@@ -98,6 +100,8 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
     public String toString() {
         return "" + productoHashSet;
     }
+
+
 
     //SETTERS--------------------------------------------------------
     public void setProductoHashSet(HashSet<Producto> productoHashSet) {
