@@ -1,7 +1,7 @@
 package ClasesControladoras;
 
 import Excepciones.ArchivoIncorrectoExcepcion;
-import Excepciones.EliminarProductoExcepcion;
+import Excepciones.EliminarExcepcion;
 import Excepciones.IdIncorrectoExcepcion;
 import Excepciones.ProductoExistenteExcepcion;
 import Usuario.app.Admin;
@@ -371,7 +371,7 @@ public class ControlMenuAdmin implements Serializable {
         } catch (ArchivoIncorrectoExcepcion e) {
             System.out.println(e.getMessage());
             eliminoProducto();
-        } catch (EliminarProductoExcepcion e) {
+        } catch (EliminarExcepcion e) {
             System.out.println(e.getMessage());
             eliminoProducto();
         }

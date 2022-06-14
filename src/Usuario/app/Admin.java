@@ -2,7 +2,7 @@ package Usuario.app;
 
 import Colecciones.ColeccionUsuario;
 import Colecciones.Deposito;
-import Excepciones.EliminarProductoExcepcion;
+import Excepciones.EliminarExcepcion;
 import Excepciones.ProductoExistenteExcepcion;
 import Producto.app.Producto;
 
@@ -63,7 +63,7 @@ public class Admin extends Usuario implements Serializable{
         return aux;
     }
 
-    public boolean eliminarProducto(String nombreArchi, int id) throws EliminarProductoExcepcion {
+    public boolean eliminarProducto(String nombreArchi, int id) throws EliminarExcepcion {
         Deposito deposito = new Deposito();
         boolean rta = false;
 
@@ -72,7 +72,7 @@ public class Admin extends Usuario implements Serializable{
         deposito.cargarArchivo(nombreArchi);
 
         if (rta == false){
-            throw new EliminarProductoExcepcion("Error al eliminar");
+            throw new EliminarExcepcion("Error al eliminar");
         }
 
 

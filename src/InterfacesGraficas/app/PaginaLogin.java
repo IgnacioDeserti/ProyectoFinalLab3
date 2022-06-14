@@ -1,6 +1,6 @@
 package InterfacesGraficas.app;
 
-import Persona.app.Usuario;
+import Usuario.app.Usuario;
 
 import javax.swing.*;
 import java.awt.*;

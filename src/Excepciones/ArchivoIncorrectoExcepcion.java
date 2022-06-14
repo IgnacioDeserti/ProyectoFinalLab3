@@ -2,8 +2,6 @@ package Excepciones;
 
 public class ArchivoIncorrectoExcepcion extends Exception{
 
-    private static final long serialVersionUID = 700L;
-
     public ArchivoIncorrectoExcepcion(String message) {
         super(message);
     }

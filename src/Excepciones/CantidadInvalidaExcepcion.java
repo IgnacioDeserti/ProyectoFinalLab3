@@ -11,3 +11,5 @@ public class CantidadInvalidaExcepcion extends Exception{
         return super.getMessage() + "No hay suficiente stock, ingrese una cantidad valida";
     }
 }
+
+

@@ -1,8 +1,8 @@
 package Excepciones;
 
-public class EliminarProductoExcepcion extends Exception{
+public class EliminarExcepcion extends Exception{
 
-    public EliminarProductoExcepcion(String message) {
+    public EliminarExcepcion(String message) {
         super(message);
     }
 
@@ -11,3 +11,5 @@ public class EliminarProductoExcepcion extends Exception{
         return super.getMessage();
     }
 }
+
+

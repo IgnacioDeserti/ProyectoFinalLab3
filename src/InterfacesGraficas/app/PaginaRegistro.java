@@ -1,12 +1,11 @@
 package InterfacesGraficas.app;
 
-import Colecciones.ColeccionUsuario;
-import Persona.app.*;
+import Colecciones.ColeccionUsuario;;
+import Usuario.app.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class PaginaRegistro extends JFrame implements ActionListener {
@@ -108,7 +107,7 @@ public class PaginaRegistro extends JFrame implements ActionListener {
                 }else {
                     int valor = validaInt(dni.getText());
                     usuario.setDni(valor);
-                    usuario.setPassword(String.valueOf(password.getPassword()));
+                    //usuario.setPassword(String.valueOf(password.getPassword()));
                 }
                 if (usuario.getDni() <= 0 && usuario.getDni() >99999999) {
                     JOptionPane.showMessageDialog(null, "Debe ingresar un dni valido en este campo");
