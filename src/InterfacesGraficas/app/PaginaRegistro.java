@@ -1,6 +1,7 @@
 package InterfacesGraficas.app;
 
 import Colecciones.ColeccionUsuario;;
+import Usuario.app.Cliente;
 import Usuario.app.Usuario;
 
 import javax.swing.*;
@@ -82,7 +83,6 @@ public class PaginaRegistro extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Usuario usuario = null;
         if (e.getSource() == cerrar) {
             System.exit(0);
         }
@@ -96,6 +96,7 @@ public class PaginaRegistro extends JFrame implements ActionListener {
         }
         if (e.getSource() == aceptar)
         {
+            Usuario usuario = new Usuario();
             usuario.setNombreYapellido(nya.getText().trim());
             if (Objects.equals(usuario.getNombreYapellido(), ""))
             {
@@ -107,7 +108,7 @@ public class PaginaRegistro extends JFrame implements ActionListener {
                 }else {
                     int valor = validaInt(dni.getText());
                     usuario.setDni(valor);
-                    //usuario.setPassword(String.valueOf(password.getPassword()));
+                    usuario.setPassword(String.valueOf(password.getPassword()));
                 }
                 if (usuario.getDni() <= 0 && usuario.getDni() >99999999) {
                     JOptionPane.showMessageDialog(null, "Debe ingresar un dni valido en este campo");
@@ -117,8 +118,14 @@ public class PaginaRegistro extends JFrame implements ActionListener {
                 }
             }
             ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
-            //while (coleccionUsuario.)
-            //if()
+            coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
+            Usuario aux = null;
+            aux = coleccionUsuario.buscar(usuario.getDni());
+            if(aux == null){
+                System.out.println("entre");
+                coleccionUsuario.agregar(usuario);
+                coleccionUsuario.cargarArchivo("usuarios.bin");
+            }
         }
         if (mostrarContraseña.isSelected()){
             password.setEchoChar((char) 0);
