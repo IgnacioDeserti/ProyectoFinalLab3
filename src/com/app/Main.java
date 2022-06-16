@@ -38,8 +38,9 @@ public class Main {
         //ControlMenuAdmin controlMenuAdmin = new ControlMenuAdmin(new Admin("Lionel Messi", 1, "SoyDiosnel10",10));
         //controlMenuAdmin.menuGralAdmin();
 
-        //ControlMenuCliente menuCliente = new ControlMenuCliente(new Cliente("Mateo Braganza", 43741503, "123"));
-        //menuCliente.menuCliente();
+
+        ControlMenuCliente menuCliente = new ControlMenuCliente(new Cliente("Mateo Braganza", 43741503, "123"));
+        menuCliente.menuCliente();
 
         /*Deposito deposito1 = new Deposito();
         deposito1.agregar(new Comida("Hamburguesas Paty", 49.99f, 1, 20, 300));
@@ -48,6 +49,7 @@ public class Main {
         System.out.println(deposito1.mostrar());
         deposito1.cargarArchivo("comida.bin");
          */
+
 
 
 
@@ -60,9 +62,9 @@ public class Main {
         coleccionUsuario1.agregar(new Cliente("Ignacio Tosini", 44456789, "Zurdosie7e"));
         System.out.println(coleccionUsuario1.mostrar());
         coleccionUsuario1.cargarArchivo("usuarios.bin");
-        //coleccionUsuario1.setUsuariosHashMap(coleccionUsuario1.leerArchivo());
-        //System.out.println(coleccionUsuario1.mostrar());
          */
+        //coleccionUsuario1.setUsuariosHashMap(coleccionUsuario1.leerArchivo("usuarios.bin"));
+        //System.out.println(coleccionUsuario1.mostrar());
 
 
 

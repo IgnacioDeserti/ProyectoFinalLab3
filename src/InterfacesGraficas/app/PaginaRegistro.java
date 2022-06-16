@@ -96,7 +96,7 @@ public class PaginaRegistro extends JFrame implements ActionListener {
         }
         if (e.getSource() == aceptar)
         {
-            Usuario usuario = new Usuario();
+            Usuario usuario = new Cliente();
             usuario.setNombreYapellido(nya.getText().trim());
             if (Objects.equals(usuario.getNombreYapellido(), ""))
             {

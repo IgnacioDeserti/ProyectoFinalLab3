@@ -10,6 +10,7 @@ import Producto.app.Tecnologia;
 import Usuario.app.Cliente;
 import Producto.app.Producto;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -52,6 +53,10 @@ public class ControlMenuCliente {
 
                   break;
                }
+               case 0:{
+                  System.out.println("Hasta la proxima");
+               }
+
                default: {
                   System.out.println("Ingreso una opcion incorrecta, vuelva a seleccionar un numero correcto");
                }
@@ -100,14 +105,17 @@ public class ControlMenuCliente {
          producto.setCantLlevada(cant);
 
       } catch (ArchivoIncorrectoExcepcion e) {
+         //JOptionPane.showMessageDialog(null,e.getMessage());
          System.out.println(e.getMessage());
-         elijoProducto();
+         llenoCarrito();
       } catch (IdIncorrectoExcepcion e) {
+         //JOptionPane.showMessageDialog(null,e.getMessage());
          System.out.println(e.getMessage());
-         elijoProducto();
+         llenoCarrito();
       } catch (CantidadInvalidaExcepcion e) {
+         //JOptionPane.showMessageDialog(null,e.getMessage());
          System.out.println(e.getMessage());
-         elijoProducto();
+         llenoCarrito();
       }
 
       return producto;
@@ -121,11 +129,13 @@ public class ControlMenuCliente {
             Producto producto = elijoProducto();
             cantLlevada = verificoCantidadLlevada(producto, cantLlevada);
             cliente.buscarEnElChanguito(producto);
-            cliente.agregarAlChanguito(producto);
+            cliente.agregarAlCarro(producto);
          } catch (CantidadExcedidaExcepcion e) {
+            //JOptionPane.showMessageDialog(null,e.getMessage());
             System.out.println(e.getMessage());
             llenoCarrito();
          } catch (ProductoExistenteExcepcion e) {
+            //JOptionPane.showMessageDialog(null,e.getMessage());
             System.out.println(e.getMessage());
             llenoCarrito();
          }
@@ -152,52 +162,69 @@ public class ControlMenuCliente {
    }
 
    public float precioTotal(){
-      float total = 0;
-      ArrayList<Producto> changuito = cliente.getChanguito();
-      for (Producto producto: changuito) {
-         total = total + producto.getPrecio();
+      float total1 = 0;
+      float total2 = 0;
+      float total3 = 0;
+      for (Bebida bebida : cliente.getBebidas()) {
+         total1 = total1 + bebida.getPrecio();
+      }
+      for (Comida comida : cliente.getComidas()){
+         total2 = total2 + comida.getPrecio();
+      }
+      for (Tecnologia tecnologia : cliente.getTecnologias()){
+         total3 = total3 + tecnologia.getPrecio();
       }
 
-      return total;
+      return total1 + total2 + total3;
    }
 
-   public ArrayList<Producto> ajustoStock(){
-      for (int i = 0; i < cliente.getChanguito().size(); i++) {
-         cliente.getChanguito().get(i).setStock(cliente.getChanguito().get(i).getStock() - cliente.getChanguito().get(i).getCantLlevada());
-         cliente.getChanguito().get(i).setCantLlevada(0);
+   public ArrayList<Bebida> ajustoStockBebida(){
+      for (int i = 0; i < cliente.getBebidas().size(); i++) {
+         cliente.getBebidas().get(i).setStock(cliente.getBebidas().get(i).getStock() - cliente.getBebidas().get(i).getCantLlevada());
+         cliente.getBebidas().get(i).setCantLlevada(0);
       }
+      return cliente.getBebidas();
+   }
 
-      return cliente.getChanguito();
+   public ArrayList<Comida> ajustoStockComida(){
+      for (int i = 0; i < cliente.getComidas().size(); i++) {
+         cliente.getComidas().get(i).setStock(cliente.getComidas().get(i).getStock() - cliente.getComidas().get(i).getCantLlevada());
+         cliente.getComidas().get(i).setCantLlevada(0);
+      }
+      return cliente.getComidas();
+   }
+
+   public ArrayList<Tecnologia> ajustoStockTecnologia(){
+      for (int i = 0; i < cliente.getTecnologias().size(); i++) {
+         cliente.getTecnologias().get(i).setStock(cliente.getTecnologias().get(i).getStock() - cliente.getTecnologias().get(i).getCantLlevada());
+         cliente.getTecnologias().get(i).setCantLlevada(0);
+      }
+      return cliente.getTecnologias();
    }
 
    public void guardoNuevosStockArchi(){
       Deposito deposito = new Deposito();
       ColeccionFactura coleccionFactura = new ColeccionFactura();
+      Factura factura = new Factura(cliente, precioTotal());
+      System.out.println("Usted compro: \n" + factura.toString());
+      //coleccionFactura.agregar(factura);
+      //coleccionFactura.cargarArchivo("factura.json");
+      cliente.setBebidas(ajustoStockBebida());
+      cliente.setComidas(ajustoStockComida());
+      cliente.setTecnologias(ajustoStockTecnologia());
 
-      coleccionFactura.agregar(new Factura(cliente.getChanguito(), cliente, precioTotal()));
-      coleccionFactura.cargarArchivo("factura.json");
-      cliente.setChanguito(ajustoStock());
-
-      for (Producto producto: cliente.getChanguito()) {
-         if (producto instanceof Comida){
-            modificoArchi("comida.bin", producto);
-         }
-         else if (producto instanceof Bebida){
-            modificoArchi("bebida.bin", producto);
-         }
-         else{
-            modificoArchi("tecnologia.bin", producto);
-         }
+      for (Bebida bebida : cliente.getBebidas()){
+         deposito.modificoArchi("bebida.bin", bebida);
       }
 
-   }
+      for (Comida comida : cliente.getComidas()){
+         deposito.modificoArchi("comida.bin", comida);
+      }
 
-   public void modificoArchi(String nombreArchivo, Producto producto){
-      Deposito deposito = new Deposito();
-      deposito.setProductoHashSet(deposito.leerArchivo(nombreArchivo));
-      deposito.eliminar(producto.getId());
-      deposito.agregar(producto);
-      deposito.cargarArchivo(nombreArchivo);
+      for (Tecnologia tecnologia : cliente.getTecnologias()){
+         deposito.modificoArchi("tecnologia.bin", tecnologia);
+      }
+
    }
 
 }

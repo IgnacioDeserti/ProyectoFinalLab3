@@ -97,11 +97,27 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         return rta;
     }
 
+    public boolean agregarModificado(Producto producto){
+        boolean rta = false;
+        Producto aux = buscar((producto.getId()));
+        if (aux == null) {
+            productoHashSet.add(producto);
+            rta = true;
+        }
+        return rta;
+    }
+
     public String toString() {
         return "" + productoHashSet;
     }
 
-
+    public void modificoArchi(String nombreArchivo, Producto producto){
+        Deposito deposito = new Deposito();
+        deposito.setProductoHashSet(deposito.leerArchivo(nombreArchivo));
+        deposito.eliminar(producto.getId());
+        deposito.agregarModificado(producto);
+        deposito.cargarArchivo(nombreArchivo);
+    }
 
     //SETTERS--------------------------------------------------------
     public void setProductoHashSet(HashSet<Producto> productoHashSet) {

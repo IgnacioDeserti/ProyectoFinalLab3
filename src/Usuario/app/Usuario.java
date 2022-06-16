@@ -61,6 +61,14 @@ public abstract class Usuario implements Serializable {
         this.nombreYapellido = nombreYapellido;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public static void setContador(int contador) {
+        Usuario.contador = contador;
+    }
+
     public boolean equalsLogin(int dni, String password) {
         if (dni == this.dni && password == this.password){
             return true;

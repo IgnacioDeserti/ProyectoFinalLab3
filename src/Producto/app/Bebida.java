@@ -10,6 +10,10 @@ public class Bebida extends Producto implements Serializable {
         this.ml = ml;
     }
 
+    public Bebida(){
+
+    }
+
     @Override
     public String toString() {
         return super.toString()+
