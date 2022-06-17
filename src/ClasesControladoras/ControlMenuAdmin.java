@@ -61,7 +61,7 @@ public class ControlMenuAdmin implements Serializable {
                     System.out.println(admin.verUsuarios());
                 }
                 case 0 -> {
-                    System.out.println("Hasta luego, capitan!");
+                    System.out.println("Hasta luego, capitan!!!");
                 }
             }
         }while (opcion != 0);

@@ -52,7 +52,7 @@ public class Factura {
         return "Factura: "+
                 "\nCliente: " + comprador.listar() +
                 "\nDetalle: " + comprador.mostrarBebidas() +
-                "\n" + comprador.mostrarBebidas() +
+                "\n" + comprador.mostrarComidas() +
                 "\n" + comprador.mostrarTecnologias() +
                 "\nTotal: " + total;
     }

@@ -14,8 +14,7 @@ public class UsuarioIncorrecto extends Exception{
 
     @Override
     public String getMessage() {
-        return super.getMessage() + "Usuario y/o password incorrecta" +
-                "Cantidad de intentos: " + cantidadDeIntentos++;
+        return super.getMessage();
     }
 
 
