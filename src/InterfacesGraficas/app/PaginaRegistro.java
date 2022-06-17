@@ -1,7 +1,6 @@
 package InterfacesGraficas.app;
 
-import Colecciones.ColeccionUsuario;;
-import Usuario.app.Cliente;
+import Colecciones.ColeccionUsuario;
 import Usuario.app.Usuario;
 
 import javax.swing.*;
@@ -15,13 +14,10 @@ public class PaginaRegistro extends JFrame implements ActionListener {
     private JTextField nya, dni;
     private JPasswordField password;
     private JCheckBox mostrarContraseña;
-    /*public static String nombre;
-    public static int documento;
-    public static String password;*/
 
     public PaginaRegistro() {
         setLayout(null);
-
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //para que el programa no se quede abierto en segundo plano
         setTitle("Registro");
         getContentPane().setBackground(new Color(248, 248, 248, 255));
         ImageIcon imageIcon1 = new ImageIcon("src\\images\\CdeCarrefour.png");
@@ -92,17 +88,18 @@ public class PaginaRegistro extends JFrame implements ActionListener {
             pantallaInicio.setVisible(true); //Si queres que se vea true, si no false.
             pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
             pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
+            pantallaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setVisible(false);
         }
         if (e.getSource() == aceptar)
         {
             Usuario usuario = new Usuario();
             usuario.setNombreYapellido(nya.getText().trim());
+            String docu = dni.getText();
             if (Objects.equals(usuario.getNombreYapellido(), ""))
             {
                 JOptionPane.showMessageDialog(null, "Debe ingresar algun valor en el campo nombre y apellido");
             }else {
-                String docu = dni.getText();
                 if (docu.equals("")){
                     JOptionPane.showMessageDialog(null, "Debe ingresar algun valor en el campo dni");
                 }else {
@@ -110,7 +107,7 @@ public class PaginaRegistro extends JFrame implements ActionListener {
                     usuario.setDni(valor);
                     usuario.setPassword(String.valueOf(password.getPassword()));
                 }
-                if (usuario.getDni() <= 0 && usuario.getDni() >99999999) {
+                if (usuario.getDni() <= 0 && usuario.getDni() > 99999999) {
                     JOptionPane.showMessageDialog(null, "Debe ingresar un dni valido en este campo");
                 } else if (Objects.equals(usuario.getPassword(), ""))
                 {
@@ -122,9 +119,18 @@ public class PaginaRegistro extends JFrame implements ActionListener {
             Usuario aux = null;
             aux = coleccionUsuario.buscar(usuario.getDni());
             if(aux == null){
-                System.out.println("entre");
+                JOptionPane.showMessageDialog(null, "Usted a sido registrado correctamente");
                 coleccionUsuario.agregar(usuario);
                 coleccionUsuario.cargarArchivo("usuarios.bin");
+            }else if (Objects.equals(usuario.getNombreYapellido(), "") && docu.equals("") && usuario.getDni() <= 0 && usuario.getDni() > 99999999 && Objects.equals(usuario.getPassword(), "")){
+                JOptionPane.showMessageDialog(null, "Usuario ya creado, sera enviado al apartado login");
+                PaginaLogin paginaLogin = new PaginaLogin();
+                paginaLogin.setBounds(0,0,600,600);
+                paginaLogin.setVisible(true);
+                paginaLogin.setLocationRelativeTo(null);
+                paginaLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                paginaLogin.setResizable(false);
+                this.setVisible(false);
             }
         }
         if (mostrarContraseña.isSelected()){
