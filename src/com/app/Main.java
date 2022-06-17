@@ -33,20 +33,21 @@ public class Main {
         pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
         pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.*/
 
-        //InicioSesion inicioSesion = new InicioSesion();
-        //inicioSesion.menuInicio();
+        InicioSesion inicioSesion = new InicioSesion();
+        inicioSesion.menuInicioSesion();
 
         //ControlMenuAdmin controlMenuAdmin = new ControlMenuAdmin(new Admin("Lionel Messi", 1, "SoyDiosnel10",10));
         //controlMenuAdmin.menuGralAdmin();
 
 
-        ControlMenuCliente menuCliente = new ControlMenuCliente(new Cliente("Ignacio Deserti", 44667880, "123"));
-        menuCliente.menuCliente();
+        //ControlMenuCliente menuCliente = new ControlMenuCliente(new Cliente("Ignacio Deserti", 44667880, "123"));
+        //menuCliente.menuCliente();
 
         /*ColeccionFactura coleccionFactura = new ColeccionFactura();
         coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
         System.out.println(coleccionFactura.mostrar());
          */
+
 
 
         /*Deposito deposito1 = new Deposito();

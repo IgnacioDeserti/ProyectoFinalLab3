@@ -101,7 +101,7 @@ public class ColeccionFactura implements I_Coleccion<Factura>, Serializable {
                         bebida.setPrecio(BigDecimal.valueOf(producto.getDouble("precio")).floatValue());
                         bebida.setStock(producto.getInt("stock"));
                         bebida.setCantLlevada(producto.getInt("cantLlevada"));
-                        //bebida.setMl(producto.getInt("ml"));
+                        bebida.setMl(producto.getInt("ml"));
                         bebidas.add(bebida);
                     }
                     cliente.setBebidas(bebidas);

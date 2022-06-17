@@ -27,11 +27,11 @@ public class ControlMenuCliente {
    public void menuCliente (){
       teclado = new Scanner(System.in);
       int opc = 0;
-      System.out.println("Bienvenido " + cliente.getNombreYapellido());
+      System.out.println("\nBienvenido " + cliente.getNombreYapellido());
       System.out.println("Usted se encuentra en nuestro Carrefour digital.\n");
          do {
             System.out.println("""
-                    Ingrese 1 para ver los productos disponibles
+                    \nIngrese 1 para ver los productos disponibles
                     Ingrese 2 para realizar una compra
                     Ingrese 3 para ver sus anteriores compras, si es que tiene
                     Ingrese 0 para salir del menu""");
@@ -54,13 +54,12 @@ public class ControlMenuCliente {
                   break;
                }
                case 0:{
-                  System.out.println("Hasta la proxima");
+                  System.out.println("Hasta la proxima!!!");
                }
 
             }
          }while (opc!=0);
 
-         teclado.close();
    }
 
    public int verProductos() throws ArchivoIncorrectoExcepcion{
@@ -233,7 +232,6 @@ public class ControlMenuCliente {
       coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
       for (Factura factura : coleccionFactura.getFacturas()){
          if (factura.getComprador().getDni() == cliente.getDni()){
-            System.out.println("hola hola hola");
             stringBuilder.append(coleccionFactura.toString());
          }
       }

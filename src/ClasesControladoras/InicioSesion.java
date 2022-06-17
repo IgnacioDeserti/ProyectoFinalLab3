@@ -14,38 +14,40 @@ import java.util.Scanner;
 
 public class InicioSesion {
 
-    static Scanner teclado;
+    static Scanner teclado = new Scanner(System.in);
 
     public void menuInicioSesion(){
-        int opcion;
-            System.out.println("Bienvenido a carrefour!!" +
-                    "Ingrese 1 para registrarse" +
-                    "Ingrese 2 para iniciar sesion" +
-                    "Ingrese 0 para cerrar el programa");
-            opcion = teclado.nextInt();
-
+        int opcion = 0;
             do {
+                    System.out.println("\nBienvenido a carrefour!!" +
+                            "\nIngrese 1 para registrarse" +
+                            "\nIngrese 2 para iniciar sesion" +
+                            "\nIngrese 0 para cerrar el programa");
+                opcion = teclado.nextInt();
                 switch(opcion)
                 {
-                    case 1 -> {
+                    case 1 : {
                         Usuario usuario = registro();
                         ejecutoMenuAdecuado(usuario);
+                        break;
                     }
 
-                    case 2 -> {
+                    case 2 : {
                         Usuario usuario = login();
                         ejecutoMenuAdecuado(usuario);
+                        break;
                     }
 
 
                 }
             }while (opcion != 0);
+
     }
 
     public int verificoDniLogin() throws UsuarioIncorrecto {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
-        System.out.println("Ingrese su dni");
+        System.out.println("Ingrese su dni login");
         int dni = teclado.nextInt();
         if (coleccionUsuario.buscar(dni) == null){
             throw new UsuarioIncorrecto("No hay un usuario registrado con ese dni");
@@ -59,18 +61,14 @@ public class InicioSesion {
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
         Usuario usuario = coleccionUsuario.buscar(dni);
         System.out.println("Ingrese password");
+        teclado.nextLine();
         String password = teclado.nextLine();
-        if (usuario.getPassword() != password) {
+        if (!usuario.getPassword().equals(password)) {
             throw new PasswordIncorrecto("Password incorrecto");
         }
         else {
             System.out.println("Credenciales correctas" +
-                    "Iniciando sesion...");
-            try {
-                wait(3000);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
+                    "\nIniciando sesion...");
         }
 
         return usuario;
@@ -84,10 +82,10 @@ public class InicioSesion {
             usuario = verificoPasswordLogin(dni);
         } catch (UsuarioIncorrecto e) {
             System.out.println(e.getMessage());
-            login();
+             usuario = login();
         } catch (PasswordIncorrecto e) {
             System.out.println(e.getMessage());
-            login();
+            usuario = login();
         }
 
         return usuario;
@@ -126,9 +124,9 @@ public class InicioSesion {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
         try {
-            System.out.println("Ingrese su dni");
             int dni = verificoDniRegistro();
             System.out.println("Ingrese password");
+            teclado.nextLine();
             String password = teclado.nextLine();
             verificoPasswordRegistro(password);
             System.out.println("Ingrese su nombre y apellido");
@@ -137,12 +135,13 @@ public class InicioSesion {
             cliente.setPassword(password);
             cliente.setNombreYapellido(nya);
             coleccionUsuario.agregar(cliente);
+            coleccionUsuario.cargarArchivo("usuarios.bin");
         } catch (UsuarioExistente e) {
             System.out.println(e.getMessage());
-            registro();
+            cliente = registro();
         } catch (PasswordInvalido e) {
             System.out.println(e.getMessage());
-            registro();
+            cliente = registro();
         }
 
         return cliente;
