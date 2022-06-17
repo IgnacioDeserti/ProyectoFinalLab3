@@ -1,12 +1,16 @@
 package Usuario.app;
 
+import Excepciones.ProductoExistenteExcepcion;
+import Producto.app.Bebida;
+import Producto.app.Comida;
 import Producto.app.Producto;
+import Producto.app.Tecnologia;
 
 import javax.management.MBeanRegistrationException;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
+public class Cliente extends Usuario implements Serializable {
 
     private ArrayList<Comida> comidas;
     private ArrayList<Bebida> bebidas;
@@ -28,7 +32,6 @@ public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
         return false;
     }
 
-    @Override
     public String listar() {
         return toString();
     }
@@ -82,6 +85,87 @@ public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
                 }
             }
         }
+    }
+
+    public Cliente registro(int dni, String password){
+        Usuario usuario = null;
+        int flag = 0;
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream("usuarios.bin");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            while (flag == 0) {
+                usuario = (Usuario) objectInputStream.readObject();
+                //if (usuario.equalsRegistro()){
+                    flag = 1;
+                //}
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    //GETTERS-----------------------------------------
+
+    public static int getCapacidad() {
+        return capacidad;
+    }
+
+    public ArrayList<Bebida> getBebidas() {
+        return bebidas;
+    }
+
+    public ArrayList<Comida> getComidas() {
+        return comidas;
+    }
+
+    public ArrayList<Tecnologia> getTecnologias() {
+        return tecnologias;
+    }
+
+    //SETTERS-----------------------------------------
+
+
+    public void setBebidas(ArrayList<Bebida> bebidas) {
+        this.bebidas = bebidas;
+    }
+
+    public void setComidas(ArrayList<Comida> comidas) {
+        this.comidas = comidas;
+    }
+
+    public void setTecnologias(ArrayList<Tecnologia> tecnologias) {
+        this.tecnologias = tecnologias;
+    }
+
+    public StringBuilder mostrarBebidas(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Bebida bebida : bebidas){
+            stringBuilder.append(bebida.mostrar());
+        }
+
+        return stringBuilder;
+    }
+
+    public StringBuilder mostrarComidas(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Comida comida : comidas){
+            stringBuilder.append(comida.mostrar());
+        }
+
+        return stringBuilder;
+    }
+
+    public StringBuilder mostrarTecnologias(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Tecnologia tecnologia : tecnologias){
+            stringBuilder.append(tecnologia.mostrar());
+        }
+
+        return stringBuilder;
     }
 
 }
