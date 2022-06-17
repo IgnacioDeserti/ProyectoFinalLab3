@@ -16,7 +16,15 @@ public class Bebida extends Producto implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString()+
+        return super.toString() +
+                "Bebida{" +
+                "ml=" + ml +
+                '}';
+    }
+
+    @Override
+    public String mostrar() {
+        return super.mostrar()+
                 "\nml: " + ml;
     }
 

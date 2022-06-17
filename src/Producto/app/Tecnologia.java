@@ -17,7 +17,15 @@ public class Tecnologia extends Producto implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString()+
+        return super.toString() +
+                "Tecnologia{" +
+                "isElectrico=" + isElectrico +
+                '}';
+    }
+
+    @Override
+    public String mostrar() {
+        return super.mostrar()+
                 "\nIs Electrico: " + isElectrico;
     }
 

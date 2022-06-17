@@ -30,7 +30,7 @@ public abstract class Usuario implements Serializable {
         contador++;
     }
 
-    public String toString() {
+    public String mostrar() {
         return "> DNI Usuario\nNombre y Apellido: " + nombreYapellido + "\nId usuario: " + idUsuario + "\n";
     }
 
@@ -45,6 +45,20 @@ public abstract class Usuario implements Serializable {
 
     public String getPassword() {
         return password;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombreYapellido='" + nombreYapellido + '\'' +
+                ", dni=" + dni +
+                ", password='" + password + '\'' +
+                ", idUsuario=" + idUsuario +
+                '}';
     }
 
     //SETTERS---------------------------------------------------------------
@@ -98,7 +112,7 @@ public abstract class Usuario implements Serializable {
         return nombreArchi;
     }
 
-    public String mostrarDeposito(int op)  {
+    public StringBuilder mostrarDeposito(int op)  {
         Deposito deposito = new Deposito();
         String nombreArchi = elegirDeposito(op);
         deposito.setProductoHashSet(deposito.leerArchivo(nombreArchi));

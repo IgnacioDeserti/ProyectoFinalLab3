@@ -3,6 +3,7 @@ package com.app;
 import ClasesControladoras.ControlMenuAdmin;
 import ClasesControladoras.ControlMenuCliente;
 import ClasesControladoras.InicioSesion;
+import Colecciones.ColeccionFactura;
 import Colecciones.Deposito;
 import Colecciones.ColeccionUsuario;
 import InterfacesGraficas.app.PaginaComida;
@@ -39,18 +40,22 @@ public class Main {
         //controlMenuAdmin.menuGralAdmin();
 
 
-        ControlMenuCliente menuCliente = new ControlMenuCliente(new Cliente("Mateo Braganza", 43741503, "123"));
+        ControlMenuCliente menuCliente = new ControlMenuCliente(new Cliente("Ignacio Deserti", 44667880, "123"));
         menuCliente.menuCliente();
 
-        /*Deposito deposito1 = new Deposito();
-        deposito1.agregar(new Comida("Hamburguesas Paty", 49.99f, 1, 20, 300));
-        //deposito1.agregar(new Bebida("Coca Cola", 49.99f, 20, 150));
-        //deposito1.agregar(new Tecnologia("Televisor LG", 49.99f, 5, true));
-        System.out.println(deposito1.mostrar());
-        deposito1.cargarArchivo("comida.bin");
+        /*ColeccionFactura coleccionFactura = new ColeccionFactura();
+        coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
+        System.out.println(coleccionFactura.mostrar());
          */
 
 
+        /*Deposito deposito1 = new Deposito();
+        //deposito1.agregar(new Comida("Hamburguesas Paty", 49.99f, 1, 20, 300));
+        //deposito1.agregar(new Bebida("Coca Cola", 49.99f, 20, 150));
+        deposito1.agregar(new Tecnologia("Televisor LG", 49.99f, 5, true));
+        System.out.println(deposito1.mostrar());
+        deposito1.cargarArchivo("tecnologia.bin");
+         */
 
 
         ColeccionUsuario coleccionUsuario1 = new ColeccionUsuario();

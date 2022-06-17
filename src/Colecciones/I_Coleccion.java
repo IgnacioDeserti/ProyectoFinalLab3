@@ -6,7 +6,7 @@ public interface I_Coleccion<T>{
     boolean eliminar(int aux);
     boolean agregar(T aux);
     T buscar(int aux);
-    String mostrar();
+    StringBuilder mostrar();
     void cargarArchivo(String nombreArchivo);
     Object leerArchivo(String nombreArchivo);
 

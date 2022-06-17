@@ -11,7 +11,7 @@ public class JsonUtiles {
 
     public static void grabar(JSONArray array) {
         try {
-            FileWriter file = new FileWriter("facturas.json");
+            FileWriter file = new FileWriter("factura.json");
             file.write(array.toString());
             file.flush();
             file.close();

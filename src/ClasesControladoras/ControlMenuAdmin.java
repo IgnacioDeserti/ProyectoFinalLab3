@@ -1,5 +1,6 @@
 package ClasesControladoras;
 
+import Colecciones.Deposito;
 import Excepciones.ArchivoIncorrectoExcepcion;
 import Excepciones.EliminarExcepcion;
 import Excepciones.IdIncorrectoExcepcion;
@@ -166,7 +167,7 @@ public class ControlMenuAdmin implements Serializable {
 
         Tecnologia tecnologia = new Tecnologia(nombreProducto, precioProducto, stock, isElectrico);
 
-        System.out.println(tecnologia.toString());
+        System.out.println(tecnologia.mostrar());
 
         return tecnologia;
     }
@@ -231,7 +232,7 @@ public class ControlMenuAdmin implements Serializable {
                     break;
                 }
                 default: {
-                    JOptionPane.showMessageDialog(null, "Ingrese una opcion valida");
+                    System.out.println("Ingrese una opcion valida");
                     modificoAtributoComida(comida);
                 }
 
@@ -276,7 +277,7 @@ public class ControlMenuAdmin implements Serializable {
                     break;
                 }
             default: {
-                JOptionPane.showMessageDialog(null,"Ingrese una opcion valida");
+                System.out.println("Ingrese una opcion valida");
                 modificoAtributoBebida(bebida);
             }
         }
@@ -322,7 +323,7 @@ public class ControlMenuAdmin implements Serializable {
                 break;
             }
             default: {
-                JOptionPane.showMessageDialog(null,"Ingrese una opcion valida");
+                System.out.println("Ingrese una opcion valida");
                 modificoAtributoTecnologia(tecnologia);
             }
         }
@@ -348,24 +349,22 @@ public class ControlMenuAdmin implements Serializable {
     public void modificoYGuardoProducto(){
         int op = 0;
         int id = 0;
+        Deposito deposito = new Deposito();
         try {
             op = seleccionoArchi();
             System.out.println(admin.mostrarDeposito(op));
             System.out.println("\nIngrese el id del producto que quiere modificar");
             id = teclado.nextInt();
             Producto producto = admin.seleccionoProducto(id, admin.elegirDeposito(op));
-            System.out.println(producto.toString() + "\n");
+            System.out.println(producto.mostrar() + "\n");
             admin.eliminoParaReemplazar(id, op);
-            admin.agregarProducto(op, modificoProducto(producto));
+            deposito.modificoArchi(admin.elegirDeposito(op), producto);
             System.out.println("Producto modificado! Se veran los cambios al acceder al deposito de nuevo");
         } catch (ArchivoIncorrectoExcepcion e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.out.println(e.getMessage());
             modificoYGuardoProducto();
         } catch (IdIncorrectoExcepcion e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
-            modificoYGuardoProducto();
-        } catch (ProductoExistenteExcepcion e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.out.println(e.getMessage());
             modificoYGuardoProducto();
         }
 
@@ -383,10 +382,10 @@ public class ControlMenuAdmin implements Serializable {
                 System.out.println("Producto eliminado! Se veran los cambios al acceder al deposito de nuevo");
             }
         } catch (ArchivoIncorrectoExcepcion e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.out.println(e.getMessage());
             eliminoProducto();
         } catch (EliminarExcepcion e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.out.println(e.getMessage());
             eliminoProducto();
         }
     }

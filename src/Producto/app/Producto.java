@@ -30,8 +30,20 @@ public abstract class Producto implements Serializable {
         return id;
     }
 
+
     @Override
     public String toString() {
+        return "Producto{" +
+                "nombreProduto=" + nombreProduto +
+                ", id=" + id +
+                ", precio=" + precio +
+                ", stock=" + stock +
+                ", cantLlevada=" + cantLlevada +
+                ", isDisponible=" + isDisponible +
+                '}';
+    }
+
+    public String mostrar() {
         return "\n\nNombre produto: " + nombreProduto +
                 "\nId: " + id +
                 "\nPrecio: " + precio +

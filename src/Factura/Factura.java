@@ -42,11 +42,18 @@ public class Factura {
 
     @Override
     public String toString() {
+        return "Factura{" +
+                "comprador=" + comprador +
+                ", total=" + total +
+                '}';
+    }
+
+    public String mostrar() {
         return "Factura: "+
-                "\n Cliente: " + comprador.listar() +
-                "\nDetalle: " + comprador.getBebidas().toString() +
-                "\n" + comprador.getComidas().toString() +
-                "\n" + comprador.getTecnologias().toString() +
+                "\nCliente: " + comprador.listar() +
+                "\nDetalle: " + comprador.mostrarBebidas() +
+                "\n" + comprador.mostrarBebidas() +
+                "\n" + comprador.mostrarTecnologias() +
                 "\nTotal: " + total;
     }
 }
