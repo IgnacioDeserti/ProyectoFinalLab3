@@ -87,8 +87,14 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
     }
 
     @Override
-    public String mostrar() {
-        return usuariosHashMap.toString();
+    public StringBuilder mostrar() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Map.Entry<Integer, Usuario> entry : usuariosHashMap.entrySet()){
+            stringBuilder.append(entry.getValue().mostrar());
+        }
+
+        return stringBuilder;
     }
 
     @Override

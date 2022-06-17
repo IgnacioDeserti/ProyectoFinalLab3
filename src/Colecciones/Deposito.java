@@ -3,10 +3,7 @@ package Colecciones;
 import Producto.app.Producto;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 
 public class Deposito implements I_Coleccion<Producto>, Serializable {
 
@@ -80,9 +77,14 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         return encontrada;
     }
 
-    @Override
-    public String mostrar() {
-        return productoHashSet.toString();
+    public StringBuilder mostrar() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Producto producto : productoHashSet){
+            stringBuilder.append(producto.mostrar());
+        }
+
+        return stringBuilder;
     }
 
     @Override

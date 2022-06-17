@@ -50,18 +50,17 @@ public class ControlMenuCliente {
                }
 
                case 3: {
-
+                  mostrarFacturas();
                   break;
                }
                case 0:{
                   System.out.println("Hasta la proxima");
                }
 
-               default: {
-                  System.out.println("Ingreso una opcion incorrecta, vuelva a seleccionar un numero correcto");
-               }
             }
          }while (opc!=0);
+
+         teclado.close();
    }
 
    public int verProductos() throws ArchivoIncorrectoExcepcion{
@@ -127,6 +126,7 @@ public class ControlMenuCliente {
       do {
          try {
             Producto producto = elijoProducto();
+            System.out.println(producto.mostrar());
             cantLlevada = verificoCantidadLlevada(producto, cantLlevada);
             cliente.buscarEnElChanguito(producto);
             cliente.agregarAlCarro(producto);
@@ -206,9 +206,9 @@ public class ControlMenuCliente {
       Deposito deposito = new Deposito();
       ColeccionFactura coleccionFactura = new ColeccionFactura();
       Factura factura = new Factura(cliente, precioTotal());
-      System.out.println("Usted compro: \n" + factura.toString());
-      //coleccionFactura.agregar(factura);
-      //coleccionFactura.cargarArchivo("factura.json");
+      //System.out.println("Usted compro: \n" + factura.mostrar());
+      coleccionFactura.agregar(factura);
+      coleccionFactura.cargarArchivo("factura.json");
       cliente.setBebidas(ajustoStockBebida());
       cliente.setComidas(ajustoStockComida());
       cliente.setTecnologias(ajustoStockTecnologia());
@@ -225,6 +225,30 @@ public class ControlMenuCliente {
          deposito.modificoArchi("tecnologia.bin", tecnologia);
       }
 
+   }
+
+   public StringBuilder facturasCliente(){
+      StringBuilder stringBuilder = new StringBuilder();
+      ColeccionFactura coleccionFactura = new ColeccionFactura();
+      coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
+      for (Factura factura : coleccionFactura.getFacturas()){
+         if (factura.getComprador().getDni() == cliente.getDni()){
+            System.out.println("hola hola hola");
+            stringBuilder.append(coleccionFactura.toString());
+         }
+      }
+
+      return stringBuilder;
+   }
+
+   public void mostrarFacturas(){
+      StringBuilder stringBuilder = facturasCliente();
+      if (stringBuilder == null){
+         System.out.println("Usted no ha hecho compras");
+      }
+      else {
+         System.out.println(stringBuilder);
+      }
    }
 
 }

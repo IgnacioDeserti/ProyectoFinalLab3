@@ -4,9 +4,8 @@ public class UsuarioIncorrecto extends Exception{
 
     private int cantidadDeIntentos;
 
-    public UsuarioIncorrecto(String message, int cantidadDeIntentos) {
+    public UsuarioIncorrecto(String message) {
         super(message);
-        this.cantidadDeIntentos = cantidadDeIntentos;
     }
 
     public int getCantidadDeIntentos() {
@@ -15,7 +14,8 @@ public class UsuarioIncorrecto extends Exception{
 
     @Override
     public String getMessage() {
-        return super.getMessage() + "Usuario y/o password incorrecta";
+        return super.getMessage() + "Usuario y/o password incorrecta" +
+                "Cantidad de intentos: " + cantidadDeIntentos++;
     }
 
 

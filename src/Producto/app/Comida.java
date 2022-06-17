@@ -18,7 +18,16 @@ public class Comida extends Producto implements Serializable {
 
     @Override
     public String toString() {
-        return  super.toString()+
+        return super.toString() +
+                "Comida{" +
+                "gramos=" + gramos +
+                ", tipoProducto=" + tipoProducto +
+                '}';
+    }
+
+    @Override
+    public String mostrar() {
+        return  super.mostrar()+
                 "\nGramos: " + gramos;
     }
 

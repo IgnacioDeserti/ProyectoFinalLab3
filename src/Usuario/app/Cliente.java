@@ -35,9 +35,17 @@ public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
 
     @Override
     public String toString() {
-        return super.toString() + "\n";
+        return super.toString() +
+                "Cliente{" +
+                "comidas=" + comidas +
+                ", bebidas=" + bebidas +
+                ", tecnologias=" + tecnologias +
+                '}';
     }
 
+    public String mostrar() {
+        return super.mostrar();
+    }
 
     public void agregarAlCarro(Producto producto){
         if (producto instanceof Comida){
