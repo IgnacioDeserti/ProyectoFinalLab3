@@ -12,6 +12,10 @@ public class Comida extends Producto implements Serializable {
         this.tipoProducto = tipoProducto;
     }
 
+    public Comida(){
+
+    }
+
     @Override
     public String toString() {
         return  super.toString()+

@@ -7,40 +7,46 @@ import java.util.ArrayList;
 
 public class Factura {
 
-    private ArrayList<Producto> compra;
     private Cliente comprador;
     private float total;
 
-    public Factura(ArrayList<Producto> compra, Cliente comprador, float total) {
-        this.compra = compra;
+    public Factura(Cliente comprador, float total) {
         this.comprador = comprador;
         this.total = total;
     }
 
-    //GETTERS----------------------------------------------------
-    public ArrayList<Producto> getCompra() {
-        return compra;
+    public Factura(){
+
     }
+
+    //GETTERS----------------------------------------------------
 
     public Cliente getComprador() {
         return comprador;
     }
 
+    public float getTotal() {
+        return total;
+    }
+
     //SETTERS----------------------------------------------------
 
-    public void setCompra(ArrayList<Producto> compra) {
-        this.compra = compra;
-    }
 
     public void setComprador(Cliente comprador) {
         this.comprador = comprador;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
     }
 
     @Override
     public String toString() {
         return "Factura: "+
                 "\n Cliente: " + comprador.listar() +
-                "\nDetalle: " + compra.toString() +
+                "\nDetalle: " + comprador.getBebidas().toString() +
+                "\n" + comprador.getComidas().toString() +
+                "\n" + comprador.getTecnologias().toString() +
                 "\nTotal: " + total;
     }
 }

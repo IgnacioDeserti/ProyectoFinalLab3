@@ -11,6 +11,10 @@ public class Tecnologia extends Producto implements Serializable {
         this.isElectrico = isElectrico;
     }
 
+    public Tecnologia(){
+
+    }
+
     @Override
     public String toString() {
         return super.toString()+

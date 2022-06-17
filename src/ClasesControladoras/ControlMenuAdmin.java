@@ -9,6 +9,8 @@ import Producto.app.Bebida;
 import Producto.app.Comida;
 import Producto.app.Producto;
 import Producto.app.Tecnologia;
+
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -88,7 +90,7 @@ public class ControlMenuAdmin implements Serializable {
             op = seleccionoArchi();
             System.out.println(admin.mostrarDeposito(op));
         } catch (ArchivoIncorrectoExcepcion e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
             funcionVerDeposito();
         }
     }
@@ -178,10 +180,10 @@ public class ControlMenuAdmin implements Serializable {
                 System.out.println("Genial! Los cambios se veran modificados al acceder al deposito de nuevo");
             }
         } catch (ArchivoIncorrectoExcepcion e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
             funcionAgregarProducto();
         } catch (ProductoExistenteExcepcion e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
             funcionAgregarProducto();
         }
     }
@@ -228,6 +230,10 @@ public class ControlMenuAdmin implements Serializable {
                     comida.setGramos(gramos);
                     break;
                 }
+                default: {
+                    JOptionPane.showMessageDialog(null, "Ingrese una opcion valida");
+                    modificoAtributoComida(comida);
+                }
 
             };
 
@@ -269,6 +275,10 @@ public class ControlMenuAdmin implements Serializable {
                     bebida.setMl(ml);
                     break;
                 }
+            default: {
+                JOptionPane.showMessageDialog(null,"Ingrese una opcion valida");
+                modificoAtributoBebida(bebida);
+            }
         }
             return bebida;
     }
@@ -311,6 +321,10 @@ public class ControlMenuAdmin implements Serializable {
                 }
                 break;
             }
+            default: {
+                JOptionPane.showMessageDialog(null,"Ingrese una opcion valida");
+                modificoAtributoTecnologia(tecnologia);
+            }
         }
 
             return tecnologia;
@@ -345,13 +359,13 @@ public class ControlMenuAdmin implements Serializable {
             admin.agregarProducto(op, modificoProducto(producto));
             System.out.println("Producto modificado! Se veran los cambios al acceder al deposito de nuevo");
         } catch (ArchivoIncorrectoExcepcion e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
             modificoYGuardoProducto();
         } catch (IdIncorrectoExcepcion e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
             modificoYGuardoProducto();
         } catch (ProductoExistenteExcepcion e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
             modificoYGuardoProducto();
         }
 
@@ -369,10 +383,10 @@ public class ControlMenuAdmin implements Serializable {
                 System.out.println("Producto eliminado! Se veran los cambios al acceder al deposito de nuevo");
             }
         } catch (ArchivoIncorrectoExcepcion e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
             eliminoProducto();
         } catch (EliminarExcepcion e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null,e.getMessage());
             eliminoProducto();
         }
     }

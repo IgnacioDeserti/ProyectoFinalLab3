@@ -22,6 +22,10 @@ public abstract class Producto implements Serializable {
         contador++;
     }
 
+   public Producto(){
+
+   }
+
     public int getId() {
         return id;
     }

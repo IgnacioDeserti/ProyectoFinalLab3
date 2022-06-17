@@ -8,12 +8,20 @@ import java.util.ArrayList;
 
 public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
 
-    private ArrayList<Producto> changuito;
+    private ArrayList<Comida> comidas;
+    private ArrayList<Bebida> bebidas;
+    private ArrayList<Tecnologia> tecnologias;
     private static int capacidad = 50;
 
     public Cliente(String nombreYapellido, int dni, String password) {
         super(nombreYapellido, dni, password);
-        this.changuito = new ArrayList<>();
+        this.comidas = new ArrayList<>();
+        this.bebidas = new ArrayList<>();
+        this.tecnologias = new ArrayList<>();
+
+    }
+    public Cliente(){
+
     }
 
     public boolean registro(Usuario usuario) {
@@ -31,16 +39,39 @@ public class Cliente extends Usuario implements I_MetodosPersona, Serializable {
     }
 
 
-    public void agregarAlChanguito(Producto producto){
-        changuito.add(producto);
+    public void agregarAlCarro(Producto producto){
+        if (producto instanceof Comida){
+            comidas.add((Comida) producto);
+        }else if (producto instanceof Bebida){
+            bebidas.add((Bebida) producto);
+        }
+        else {
+            tecnologias.add((Tecnologia) producto);
+        }
     }
 
     public void buscarEnElChanguito(Producto producto) throws ProductoExistenteExcepcion {
         Producto producto1 = null;
 
-        for (Producto aux: changuito) {
-            if (aux.equals(producto)){
-                throw new ProductoExistenteExcepcion("");
+        if (producto instanceof Comida){
+            for (Producto aux: comidas) {
+                if (aux.equals(producto)){
+                    throw new ProductoExistenteExcepcion("");
+                }
+            }
+        }
+        else if (producto instanceof Bebida){
+            for (Producto aux: bebidas) {
+                if (aux.equals(producto)){
+                    throw new ProductoExistenteExcepcion("");
+                }
+            }
+        }
+        else {
+            for (Producto aux: tecnologias) {
+                if (aux.equals(producto)){
+                    throw new ProductoExistenteExcepcion("");
+                }
             }
         }
     }
