@@ -38,12 +38,7 @@ public class Cliente extends Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Cliente{" +
-                "comidas=" + comidas +
-                ", bebidas=" + bebidas +
-                ", tecnologias=" + tecnologias +
-                '}';
+        return super.toString();
     }
 
     public String mostrar() {
