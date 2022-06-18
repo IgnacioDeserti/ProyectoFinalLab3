@@ -31,20 +31,6 @@ public class Admin extends Usuario implements Serializable{
                 "Codigo Secreto: " + codigoSecreto +"\n\n";
     }
 
-    public boolean eliminoParaReemplazar(int id, int op){
-        Deposito deposito = new Deposito();
-        String nombreArchi = elegirDeposito(op);
-
-        deposito.setProductoHashSet(deposito.leerArchivo(nombreArchi));
-        Producto producto = deposito.buscar(id);
-        if (producto != null){
-            deposito.eliminar(producto.getId());
-            deposito.cargarArchivo(nombreArchi);
-            return true;
-        }
-
-        return false;
-    }
 
     public boolean agregarProducto(int op, Producto producto) throws ProductoExistenteExcepcion {
         Deposito deposito = new Deposito();
@@ -79,11 +65,11 @@ public class Admin extends Usuario implements Serializable{
         return rta;
     }
 
-    public String verUsuarios(){
+    public StringBuilder verUsuarios(){
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
 
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
 
-        return coleccionUsuario.toString();
+        return coleccionUsuario.mostrar();
     }
 }

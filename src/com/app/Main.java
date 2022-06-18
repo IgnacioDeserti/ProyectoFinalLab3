@@ -51,12 +51,13 @@ public class Main {
 
 
         /*Deposito deposito1 = new Deposito();
-        //deposito1.agregar(new Comida("Hamburguesas Paty", 49.99f, 1, 20, 300));
+        deposito1.agregar(new Comida("Hamburguesas Paty", 49.99f, 1, 20, 300));
         //deposito1.agregar(new Bebida("Coca Cola", 49.99f, 20, 150));
-        deposito1.agregar(new Tecnologia("Televisor LG", 49.99f, 5, true));
+        //deposito1.agregar(new Tecnologia("Televisor LG", 49.99f, 5, true));
         System.out.println(deposito1.mostrar());
-        deposito1.cargarArchivo("tecnologia.bin");
+        deposito1.cargarArchivo("comida.bin");
          */
+
 
 
         ColeccionUsuario coleccionUsuario1 = new ColeccionUsuario();

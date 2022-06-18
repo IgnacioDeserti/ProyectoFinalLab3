@@ -10,7 +10,6 @@ import Producto.app.Tecnologia;
 import Usuario.app.Cliente;
 import Producto.app.Producto;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -45,7 +44,8 @@ public class ControlMenuCliente {
 
                case 2:{
                   llenoCarrito();
-                  guardoNuevosStockArchi();
+                  creoFactura();
+                  modificoStock();
                   break;
                }
 
@@ -177,53 +177,16 @@ public class ControlMenuCliente {
       return total1 + total2 + total3;
    }
 
-   public ArrayList<Bebida> ajustoStockBebida(){
-      for (int i = 0; i < cliente.getBebidas().size(); i++) {
-         cliente.getBebidas().get(i).setStock(cliente.getBebidas().get(i).getStock() - cliente.getBebidas().get(i).getCantLlevada());
-         cliente.getBebidas().get(i).setCantLlevada(0);
-      }
-      return cliente.getBebidas();
-   }
-
-   public ArrayList<Comida> ajustoStockComida(){
-      for (int i = 0; i < cliente.getComidas().size(); i++) {
-         cliente.getComidas().get(i).setStock(cliente.getComidas().get(i).getStock() - cliente.getComidas().get(i).getCantLlevada());
-         cliente.getComidas().get(i).setCantLlevada(0);
-      }
-      return cliente.getComidas();
-   }
-
-   public ArrayList<Tecnologia> ajustoStockTecnologia(){
-      for (int i = 0; i < cliente.getTecnologias().size(); i++) {
-         cliente.getTecnologias().get(i).setStock(cliente.getTecnologias().get(i).getStock() - cliente.getTecnologias().get(i).getCantLlevada());
-         cliente.getTecnologias().get(i).setCantLlevada(0);
-      }
-      return cliente.getTecnologias();
-   }
-
-   public void guardoNuevosStockArchi(){
-      Deposito deposito = new Deposito();
+   public void creoFactura(){
       ColeccionFactura coleccionFactura = new ColeccionFactura();
       Factura factura = new Factura(cliente, precioTotal());
-      //System.out.println("Usted compro: \n" + factura.mostrar());
       coleccionFactura.agregar(factura);
       coleccionFactura.cargarArchivo("factura.json");
-      cliente.setBebidas(ajustoStockBebida());
-      cliente.setComidas(ajustoStockComida());
-      cliente.setTecnologias(ajustoStockTecnologia());
+   }
 
-      for (Bebida bebida : cliente.getBebidas()){
-         deposito.modificoArchi("bebida.bin", bebida);
-      }
-
-      for (Comida comida : cliente.getComidas()){
-         deposito.modificoArchi("comida.bin", comida);
-      }
-
-      for (Tecnologia tecnologia : cliente.getTecnologias()){
-         deposito.modificoArchi("tecnologia.bin", tecnologia);
-      }
-
+   public void modificoStock(){
+      Deposito deposito = new Deposito();
+      deposito.guardoNuevosStockArchi(cliente);
    }
 
    public StringBuilder facturasCliente(){

@@ -87,27 +87,6 @@ public class Cliente extends Usuario implements Serializable {
         }
     }
 
-    public Cliente registro(int dni, String password){
-        Usuario usuario = null;
-        int flag = 0;
-
-        try {
-            FileInputStream fileInputStream = new FileInputStream("usuarios.bin");
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-            while (flag == 0) {
-                usuario = (Usuario) objectInputStream.readObject();
-                //if (usuario.equalsRegistro()){
-                    flag = 1;
-                //}
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     //GETTERS-----------------------------------------
 
     public static int getCapacidad() {

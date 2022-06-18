@@ -352,12 +352,14 @@ public class ControlMenuAdmin implements Serializable {
         Deposito deposito = new Deposito();
         try {
             op = seleccionoArchi();
+            String nombreArchi = admin.elegirDeposito(op);
             System.out.println(admin.mostrarDeposito(op));
             System.out.println("\nIngrese el id del producto que quiere modificar");
             id = teclado.nextInt();
             Producto producto = admin.seleccionoProducto(id, admin.elegirDeposito(op));
             System.out.println(producto.mostrar() + "\n");
-            admin.eliminoParaReemplazar(id, op);
+            deposito.eliminoParaReemplazar(id, nombreArchi);
+            producto = modificoProducto(producto);
             deposito.modificoArchi(admin.elegirDeposito(op), producto);
             System.out.println("Producto modificado! Se veran los cambios al acceder al deposito de nuevo");
         } catch (ArchivoIncorrectoExcepcion e) {
