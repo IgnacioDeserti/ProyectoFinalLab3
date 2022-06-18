@@ -1,6 +1,7 @@
 package InterfacesGraficas.app;
 
 import Colecciones.ColeccionUsuario;
+import Usuario.app.Cliente;
 import Usuario.app.Usuario;
 
 import javax.swing.*;
@@ -118,11 +119,21 @@ public class PaginaRegistro extends JFrame implements ActionListener {
             coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
             Usuario aux = null;
             aux = coleccionUsuario.buscar(usuario.getDni());
-            if(aux == null){
+            if(aux == null && !Objects.equals(usuario.getNombreYapellido(), "") && !docu.equals("") && usuario.getDni() >= 0 && usuario.getDni() < 99999999&& !Objects.equals(usuario.getPassword(), "")){
                 JOptionPane.showMessageDialog(null, "Usted a sido registrado correctamente");
                 coleccionUsuario.agregar(usuario);
                 coleccionUsuario.cargarArchivo("usuarios.bin");
-            }else if (Objects.equals(usuario.getNombreYapellido(), "") && docu.equals("") && usuario.getDni() <= 0 && usuario.getDni() > 99999999 && Objects.equals(usuario.getPassword(), "")){
+                PaginaLogin paginaLogin = new PaginaLogin();
+                paginaLogin.setBounds(0,0,600,600);
+                paginaLogin.setVisible(true);
+                paginaLogin.setLocationRelativeTo(null);
+                paginaLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                paginaLogin.setResizable(false);
+                this.setVisible(false);
+            }else if (aux.getDni() == usuario.getDni() && !Objects.equals(aux.getNombreYapellido(), usuario.getNombreYapellido()) && !Objects.equals(aux.getPassword(), usuario.getPassword())){
+                JOptionPane.showMessageDialog(null, "Dni ya utilizado, use otro");
+
+            }else if (!Objects.equals(usuario.getNombreYapellido(), "") && !docu.equals("") && usuario.getDni() >= 0 && usuario.getDni() < 99999999 && !Objects.equals(usuario.getPassword(), "")){
                 JOptionPane.showMessageDialog(null, "Usuario ya creado, sera enviado al apartado login");
                 PaginaLogin paginaLogin = new PaginaLogin();
                 paginaLogin.setBounds(0,0,600,600);

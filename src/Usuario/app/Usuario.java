@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 
-public abstract class Usuario implements Serializable {
+public class Usuario implements Serializable {
     private String nombreYapellido;
     private int dni;
     private String password;
@@ -53,12 +53,12 @@ public abstract class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "nombreYapellido='" + nombreYapellido + '\'' +
-                ", dni=" + dni +
-                ", password='" + password + '\'' +
-                ", idUsuario=" + idUsuario +
-                '}';
+        return "\nUsuario: " +
+                "nombreYapellido = " + nombreYapellido +
+                ", dni = " + dni +
+                ", password = " + password +
+                ", idUsuario = " + idUsuario +
+                "\n\n";
     }
 
     //SETTERS---------------------------------------------------------------

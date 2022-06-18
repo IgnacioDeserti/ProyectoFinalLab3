@@ -121,9 +121,15 @@ public class PaginaLogin extends JFrame implements ActionListener{
                 paginaAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 paginaAdmin.setResizable(false);
                 this.setVisible(false);
-            }
-            if(aux != null && docu.equals("") && usuario.getDni() <= 0 && usuario.getDni() > 99999999 && Objects.equals(usuario.getPassword(), "")){
+            }else if(aux != null && !docu.equals("") && usuario.getDni() >= 0 && usuario.getDni() < 99999999 && !Objects.equals(usuario.getPassword(), "")){
                 JOptionPane.showMessageDialog(null, "Usted se a logueado correctamente");
+                PaginaDeCompra paginaDeCompra = new PaginaDeCompra();
+                paginaDeCompra.setBounds(0, 0, 600, 600);
+                paginaDeCompra.setVisible(true);
+                paginaDeCompra.setLocationRelativeTo(null);
+                paginaDeCompra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                paginaDeCompra.setResizable(false);
+                this.setVisible(false);
             }
         }
             if (mostrarContraseña.isSelected()) {

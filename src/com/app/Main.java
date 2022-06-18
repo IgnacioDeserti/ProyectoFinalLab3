@@ -7,6 +7,7 @@ import Colecciones.ColeccionFactura;
 import Colecciones.Deposito;
 import Colecciones.ColeccionUsuario;
 import InterfacesGraficas.app.PaginaComida;
+import InterfacesGraficas.app.PaginaDeCompra;
 import InterfacesGraficas.app.PaginaGeneral;
 import InterfacesGraficas.app.PantallaInicio;
 import Producto.app.Bebida;
@@ -26,6 +27,7 @@ public class Main {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         Deposito deposito = new Deposito();
         PantallaInicio pantallaInicio = new PantallaInicio();
+        PaginaDeCompra paginaDeCompra = new PaginaDeCompra();
 
 
         /*pantallaInicio.setBounds(0,0,400,400);
@@ -33,8 +35,14 @@ public class Main {
         pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
         pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.*/
 
-        InicioSesion inicioSesion = new InicioSesion();
-        inicioSesion.menuInicioSesion();
+        paginaDeCompra.setBounds(0,0,600,600);
+        paginaDeCompra.setVisible(true); //Si queres que se vea true, si no false.
+        paginaDeCompra.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
+        paginaDeCompra.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
+
+
+        /*InicioSesion inicioSesion = new InicioSesion();
+        inicioSesion.menuInicioSesion();*/
 
         //ControlMenuAdmin controlMenuAdmin = new ControlMenuAdmin(new Admin("Lionel Messi", 1, "SoyDiosnel10",10));
         //controlMenuAdmin.menuGralAdmin();
@@ -63,12 +71,12 @@ public class Main {
         //coleccionUsuario1.setUsuariosHashMap(coleccionUsuario1.leerArchivo("usuarios.bin"));
         //System.out.println(coleccionUsuario1.mostrar());
 
-        /*coleccionUsuario1.agregar(new Admin("Lionel Messi", 1, "SoyDiosnel10", 1));
+        /*coleccionUsuario1.agregar(new Admin("Lionel Messi", 1, "SoyDiosnel10", 1));/*
         coleccionUsuario1.agregar(new Cliente("Ignacio Deserti", 44667880, "Daleboka123"));
         coleccionUsuario1.agregar(new Cliente("Ignacio Tosini", 44456789, "Zurdosie7e"));
         System.out.println(coleccionUsuario1.mostrar());
-        coleccionUsuario1.cargarArchivo("usuarios.bin");
-         */
+        coleccionUsuario1.cargarArchivo("usuarios.bin");*/
+
         //coleccionUsuario1.setUsuariosHashMap(coleccionUsuario1.leerArchivo("usuarios.bin"));
         //System.out.println(coleccionUsuario1.mostrar());
 

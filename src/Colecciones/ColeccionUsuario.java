@@ -104,7 +104,7 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
 
     @Override
     public String toString() {
-        return "" + usuariosHashMap;
+        return "" + usuariosHashMap + "\n";
     }
 
     //SETTERS--------------------------------------------------------

@@ -17,6 +17,10 @@ public class Admin extends Usuario implements Serializable{
         this.codigoSecreto = codigoSecreto;
     }
 
+    public Admin() {
+
+    }
+
     public boolean registro(Usuario usuario) {
         return false;
     }
