@@ -47,19 +47,19 @@ public class InicioSesion {
 
     }
 
-    public int verificoDniLogin() throws UsuarioIncorrecto {
+    public int verificoDniLogin() throws UsuarioIncorrectoException {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
         System.out.println("Ingrese su dni login");
         int dni = teclado.nextInt();
         if (coleccionUsuario.buscar(dni) == null){
-            throw new UsuarioIncorrecto("No hay un usuario registrado con ese dni");
+            throw new UsuarioIncorrectoException("No hay un usuario registrado con ese dni");
         }
 
         return dni;
     }
 
-    public Usuario verificoPasswordLogin(int dni) throws PasswordIncorrecto {
+    public Usuario verificoPasswordLogin(int dni) throws PasswordIncorrectoException {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
         Usuario usuario = coleccionUsuario.buscar(dni);
@@ -67,7 +67,7 @@ public class InicioSesion {
         teclado.nextLine();
         String password = teclado.nextLine();
         if (!usuario.getPassword().equals(password)) {
-            throw new PasswordIncorrecto("Password incorrecto");
+            throw new PasswordIncorrectoException("Password incorrecto");
         }
         else {
             System.out.println("Credenciales correctas" +
@@ -83,10 +83,10 @@ public class InicioSesion {
         try {
             dni = verificoDniLogin();
             usuario = verificoPasswordLogin(dni);
-        } catch (UsuarioIncorrecto e) {
+        } catch (UsuarioIncorrectoException e) {
             System.out.println(e.getMessage());
              usuario = login();
-        } catch (PasswordIncorrecto e) {
+        } catch (PasswordIncorrectoException e) {
             System.out.println(e.getMessage());
             usuario = login();
         }
@@ -117,7 +117,7 @@ public class InicioSesion {
         }
     }
 
-    public int verificoDniRegistro() throws UsuarioExistente, DniInvalidoExcepcion {
+    public int verificoDniRegistro() throws UsuarioExistenteException, DniInvalidoExcepcion {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
         System.out.println("Ingrese su dni");
@@ -126,15 +126,15 @@ public class InicioSesion {
             throw new DniInvalidoExcepcion("Dni no valido, ingrese otro");
         }
         if (coleccionUsuario.buscar(dni) != null){
-            throw new UsuarioExistente("Ya existe un usuario con ese dni");
+            throw new UsuarioExistenteException("Ya existe un usuario con ese dni");
         }
 
         return dni;
     }
 
-    public void verificoPasswordRegistro(String password) throws PasswordInvalido {
+    public void verificoPasswordRegistro(String password) throws PasswordInvalidoException {
         if (password.length() < 8){
-            throw new PasswordInvalido("Password invalida, ingrese otra");
+            throw new PasswordInvalidoException("Password invalida, ingrese otra");
         }
     }
 
@@ -155,10 +155,10 @@ public class InicioSesion {
             cliente.setNombreYapellido(nya);
             coleccionUsuario.agregar(cliente);
             coleccionUsuario.cargarArchivo("usuarios.bin");
-        } catch (UsuarioExistente e) {
+        } catch (UsuarioExistenteException e) {
             System.out.println(e.getMessage());
             cliente = registro();
-        } catch (PasswordInvalido e) {
+        } catch (PasswordInvalidoException e) {
             System.out.println(e.getMessage());
             cliente = registro();
         } catch (DniInvalidoExcepcion e) {

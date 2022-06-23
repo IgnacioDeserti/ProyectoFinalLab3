@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
+//Manejo de Facturas y manejo de JSON
 public class ColeccionFactura implements I_Coleccion<Factura>, Serializable {
 
     private ArrayList<Factura> facturas;

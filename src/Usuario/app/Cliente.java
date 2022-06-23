@@ -20,13 +20,14 @@ public class Cliente extends Usuario implements Serializable {
 
     public Cliente(String nombreYapellido, int dni, String password) {
         super(nombreYapellido, dni, password);
-        this.comidas = new ArrayList<>();
-        this.bebidas = new ArrayList<>();
-        this.tecnologias = new ArrayList<>();
-
+        comidas = new ArrayList<>();
+        bebidas = new ArrayList<>();
+        tecnologias = new ArrayList<>();
     }
     public Cliente(){
-
+        comidas = new ArrayList<>();
+        bebidas = new ArrayList<>();
+        tecnologias = new ArrayList<>();
     }
 
     @Override
@@ -58,23 +59,29 @@ public class Cliente extends Usuario implements Serializable {
         Producto producto1 = null;
 
         if (producto instanceof Comida){
-            for (Producto aux: comidas) {
-                if (aux.equals(producto)){
-                    throw new ProductoExistenteExcepcion("");
+            if (comidas != null){
+                for (Producto aux: comidas) {
+                    if (aux.equals(producto)){
+                        throw new ProductoExistenteExcepcion("");
+                    }
                 }
             }
         }
         else if (producto instanceof Bebida){
-            for (Producto aux: bebidas) {
-                if (aux.equals(producto)){
-                    throw new ProductoExistenteExcepcion("");
+            if (bebidas != null){
+                for (Producto aux: bebidas) {
+                    if (aux.equals(producto)){
+                        throw new ProductoExistenteExcepcion("");
+                    }
                 }
             }
         }
         else {
-            for (Producto aux: tecnologias) {
-                if (aux.equals(producto)){
-                    throw new ProductoExistenteExcepcion("");
+            if (tecnologias != null){
+                for (Producto aux: tecnologias) {
+                    if (aux.equals(producto)){
+                        throw new ProductoExistenteExcepcion("");
+                    }
                 }
             }
         }
@@ -127,7 +134,7 @@ public class Cliente extends Usuario implements Serializable {
     public StringBuilder mostrarBebidas(){
         StringBuilder stringBuilder = new StringBuilder();
         for (Bebida bebida : bebidas){
-            stringBuilder.append(bebida.mostrar());
+            stringBuilder.append(bebida.mostrarFactura());
         }
 
         return stringBuilder;
@@ -136,7 +143,7 @@ public class Cliente extends Usuario implements Serializable {
     public StringBuilder mostrarComidas(){
         StringBuilder stringBuilder = new StringBuilder();
         for (Comida comida : comidas){
-            stringBuilder.append(comida.mostrar());
+            stringBuilder.append(comida.mostrarFactura());
         }
 
         return stringBuilder;
@@ -145,7 +152,7 @@ public class Cliente extends Usuario implements Serializable {
     public StringBuilder mostrarTecnologias(){
         StringBuilder stringBuilder = new StringBuilder();
         for (Tecnologia tecnologia : tecnologias){
-            stringBuilder.append(tecnologia.mostrar());
+            stringBuilder.append(tecnologia.mostrarFactura());
         }
 
         return stringBuilder;

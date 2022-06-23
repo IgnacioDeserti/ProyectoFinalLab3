@@ -1,16 +1,13 @@
 package Usuario.app;
 
 import Colecciones.Deposito;
-import Excepciones.ArchivoIncorrectoExcepcion;
 import Excepciones.IdIncorrectoExcepcion;
+import Excepciones.PasswordInvalidoException;
 import Producto.app.Producto;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 
-public class Usuario implements Serializable {
+public abstract class Usuario implements Serializable {
     private String nombreYapellido;
     private int dni;
     private String password;
@@ -78,9 +75,15 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
-    public static void setContador(int contador) {
-        Usuario.contador = contador;
+    public String cambioPassword(String password) throws PasswordInvalidoException {
+        if (password.length() < 8){
+            throw new PasswordInvalidoException("Password invalido, ingrese otro");
+        }
+
+        return password;
     }
+
+
 
     @Override
     public int hashCode() {

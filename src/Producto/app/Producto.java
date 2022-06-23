@@ -43,6 +43,14 @@ public abstract class Producto implements Serializable {
                 '}';
     }
 
+    public String mostrarFactura() {
+        return "\n\nNombre produto: " + nombreProduto +
+                "\nId: " + id +
+                "\nPrecio: " + precio +
+                "\nCantidad: " + cantLlevada +
+                "\nIs Disponible: " + isDisponible;
+    }
+
     public String mostrar() {
         return "\n\nNombre produto: " + nombreProduto +
                 "\nId: " + id +

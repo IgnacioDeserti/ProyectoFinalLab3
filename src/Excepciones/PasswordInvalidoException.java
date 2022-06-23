@@ -1,8 +1,8 @@
 package Excepciones;
 
-public class UsuarioExistente extends Exception{
+public class PasswordInvalidoException extends Exception{
 
-    public UsuarioExistente(String message) {
+    public PasswordInvalidoException(String message) {
         super(message);
     }
 

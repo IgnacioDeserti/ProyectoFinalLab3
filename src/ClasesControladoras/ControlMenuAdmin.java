@@ -494,7 +494,7 @@ public class ControlMenuAdmin implements Serializable {
         int dni = teclado.nextInt();
         for (Factura factura : coleccionFactura.getFacturas()){
             if (factura.getComprador().getDni() == dni){
-                stringBuilder.append(coleccionFactura.mostrar());
+                stringBuilder.append(factura.mostrar());
             }
         }
         if (stringBuilder.isEmpty()){
@@ -503,6 +503,5 @@ public class ControlMenuAdmin implements Serializable {
 
         return stringBuilder;
     }
-
 
 }

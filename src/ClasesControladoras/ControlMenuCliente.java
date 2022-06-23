@@ -1,6 +1,7 @@
 package ClasesControladoras;
 
 import Colecciones.ColeccionFactura;
+import Colecciones.ColeccionUsuario;
 import Colecciones.Deposito;
 import Excepciones.*;
 import Factura.Factura;
@@ -10,7 +11,6 @@ import Producto.app.Tecnologia;
 import Usuario.app.Cliente;
 import Producto.app.Producto;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -33,6 +33,7 @@ public class ControlMenuCliente {
                     \nIngrese 1 para ver los productos disponibles
                     Ingrese 2 para realizar una compra
                     Ingrese 3 para ver sus anteriores compras, si es que tiene
+                    Ingrese 4 para cambiar la password
                     Ingrese 0 para salir del menu""");
             opc = teclado.nextInt();
 
@@ -53,6 +54,13 @@ public class ControlMenuCliente {
                   mostrarFacturas();
                   break;
                }
+
+               case 4: {
+                  teclado.nextLine();
+                  cambioPassword();
+                  break;
+               }
+
                case 0:{
                   System.out.println("Hasta la proxima!!!");
                }
@@ -174,7 +182,7 @@ public class ControlMenuCliente {
       coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
       for (Factura factura : coleccionFactura.getFacturas()){
          if (factura.getComprador().getDni() == cliente.getDni()){
-            stringBuilder.append(coleccionFactura.mostrar());
+            stringBuilder.append(factura.mostrar());
          }
       }
 
@@ -188,6 +196,22 @@ public class ControlMenuCliente {
       }
       else {
          System.out.println(stringBuilder.toString());
+      }
+   }
+
+   public void cambioPassword(){
+      try {
+         System.out.println("Ingrese nueva password");
+         String password = teclado.nextLine();
+         password = cliente.cambioPassword(password);
+         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
+         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
+         coleccionUsuario.getUsuariosHashMap().get(cliente.getDni()).setPassword(password);
+         coleccionUsuario.cargarArchivo("usuarios.bin");
+         System.out.println("Password cambiada con exito!!");
+      } catch (PasswordInvalidoException e) {
+         System.out.println(e.getMessage());
+         cambioPassword();
       }
    }
 

@@ -6,10 +6,6 @@ import ClasesControladoras.InicioSesion;
 import Colecciones.ColeccionFactura;
 import Colecciones.Deposito;
 import Colecciones.ColeccionUsuario;
-import InterfacesGraficas.app.PaginaComida;
-import InterfacesGraficas.app.PaginaDeCompra;
-import InterfacesGraficas.app.PaginaGeneral;
-import InterfacesGraficas.app.PantallaInicio;
 import Producto.app.Bebida;
 import Producto.app.Comida;
 import Producto.app.Tecnologia;
@@ -63,13 +59,28 @@ public class Main {
 
 
 
-        /*Deposito deposito1 = new Deposito();
-        //deposito1.agregar(new Comida("Hamburguesas Paty", 49.99f, 1, 20, 300));
-        //deposito1.agregar(new Bebida("Coca Cola", 49.99f, 20, 150));
-        deposito1.agregar(new Tecnologia("Televisor LG", 49.99f, 5, true));
-        System.out.println(deposito1.mostrar());
-        deposito1.cargarArchivo("tecnologia.bin");
+        Deposito deposito1 = new Deposito();
+        /*deposito1.agregar(new Comida("Hamburguesas Tapy", 49.99f, 1, 20, 300));
+        deposito1.agregar(new Comida("Fideos Marisol", 19.99f, 2, 20, 100));
+        deposito1.agregar(new Comida("Nuggets Granja de la luna", 14.99f, 1, 20, 150));
+        deposito1.agregar(new Comida("Salchichas LeBron James VIP", 6.66f, 1, 20, 200));
+
          */
+        /*deposito1.agregar(new Bebida("Moca Cola D&J", 49.99f, 20, 150));
+        deposito1.agregar(new Bebida("Guepardex", 19.99f, 20, 150));
+        deposito1.agregar(new Bebida("Cerveza Martin Palermo", 29.99f, 20, 150));
+        deposito1.agregar(new Bebida("Voskita Esmirlo", 99.99f, 20, 200));
+
+         */
+        /*deposito1.agregar(new Tecnologia("Televisor ELE SHI", 49.99f, 5, true));
+        deposito1.agregar(new Tecnologia("Heladera Patricio", 399.99f, 5, true));
+        deposito1.agregar(new Tecnologia("Orange iCellphone 19 ULTRA OMEGA", 2999.99f, 5, false));
+        deposito1.agregar(new Tecnologia("Televisor NOSY", 99.99f, 5, true));
+
+         */
+        //System.out.println(deposito1.mostrar());
+        //deposito1.cargarArchivo("bebida.bin");
+
 
 
 

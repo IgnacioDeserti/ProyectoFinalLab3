@@ -1,10 +1,10 @@
 package Excepciones;
 
-public class UsuarioIncorrecto extends Exception{
+public class UsuarioIncorrectoException extends Exception{
 
     private int cantidadDeIntentos;
 
-    public UsuarioIncorrecto(String message) {
+    public UsuarioIncorrectoException(String message) {
         super(message);
     }
 

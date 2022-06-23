@@ -111,4 +111,10 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
     public void setUsuariosHashMap(HashMap<Integer, Usuario> usuariosHashMap) {
         this.usuariosHashMap = usuariosHashMap;
     }
+
+    //GETTERS---------------------------------------------------------
+
+    public HashMap<Integer, Usuario> getUsuariosHashMap() {
+        return usuariosHashMap;
+    }
 }
