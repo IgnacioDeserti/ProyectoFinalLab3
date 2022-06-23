@@ -43,7 +43,7 @@ public class ControlMenuCliente {
                }
 
                case 2:{
-                  llenoCarrito();
+                  llenoCarrito(0);
                   creoFactura();
                   modificoStock();
                   break;
@@ -64,7 +64,7 @@ public class ControlMenuCliente {
 
    public int verProductos() throws ArchivoIncorrectoExcepcion{
       System.out.println("""
-                            \n\n
+                            \n
                             Ingrese
                             1 para elegir el deposito de comida
                             2 para elegir el deposito de bebida
@@ -91,6 +91,7 @@ public class ControlMenuCliente {
 
    public Producto elijoProducto(){
       Producto producto = null;
+      Deposito deposito = new Deposito();
       try {
          int op = verProductos();
          System.out.println(cliente.mostrarDeposito(op));
@@ -99,65 +100,42 @@ public class ControlMenuCliente {
          producto = cliente.seleccionoProducto(id, cliente.elegirDeposito(op));
          System.out.println("Cuantas unidades desea llevar?");
          int cant = teclado.nextInt();
-         verificoStock(producto, cant);
-         producto.setCantLlevada(cant);
+         producto = deposito.verificoStock(producto, cant);
 
       } catch (ArchivoIncorrectoExcepcion e) {
-         //JOptionPane.showMessageDialog(null,e.getMessage());
          System.out.println(e.getMessage());
-         llenoCarrito();
+         producto = elijoProducto();
       } catch (IdIncorrectoExcepcion e) {
-         //JOptionPane.showMessageDialog(null,e.getMessage());
          System.out.println(e.getMessage());
-         llenoCarrito();
+         producto = elijoProducto();
       } catch (CantidadInvalidaExcepcion e) {
-         //JOptionPane.showMessageDialog(null,e.getMessage());
          System.out.println(e.getMessage());
-         llenoCarrito();
+         producto = elijoProducto();
       }
 
       return producto;
    }
 
-   public void llenoCarrito(){
-      int cantLlevada = 0;
+   public void llenoCarrito(int cantLlevada){
       char control = 's';
-      do {
+      while (control != 'n'){
          try {
             Producto producto = elijoProducto();
             System.out.println(producto.mostrar());
-            cantLlevada = verificoCantidadLlevada(producto, cantLlevada);
+            cantLlevada = cliente.verificoCantidadLlevada(producto, cantLlevada);
             cliente.buscarEnElChanguito(producto);
             cliente.agregarAlCarro(producto);
+            System.out.println("Producto agregado!");
+            System.out.println("Desea agregar otro producto?");
          } catch (CantidadExcedidaExcepcion e) {
-            //JOptionPane.showMessageDialog(null,e.getMessage());
             System.out.println(e.getMessage());
-            llenoCarrito();
+            llenoCarrito(cantLlevada);
          } catch (ProductoExistenteExcepcion e) {
-            //JOptionPane.showMessageDialog(null,e.getMessage());
             System.out.println(e.getMessage());
-            llenoCarrito();
+            llenoCarrito(cantLlevada);
          }
-         System.out.println("Desea agregar otro producto?");
          control = teclado.next().charAt(0);
-      }while (control != 'n');
-   }
-
-   public void verificoStock(Producto producto, int cantidad) throws CantidadInvalidaExcepcion {
-      if (cantidad > producto.getStock()){
-         throw new CantidadInvalidaExcepcion("");
       }
-   }
-
-   public int verificoCantidadLlevada(Producto producto, int cantLlevada) throws CantidadExcedidaExcepcion {
-      if (producto.getCantLlevada() + cantLlevada < cliente.getCapacidad()){
-         cantLlevada = cantLlevada + producto.getCantLlevada();
-      }
-      else {
-         throw new CantidadExcedidaExcepcion("");
-      }
-
-      return cantLlevada;
    }
 
    public float precioTotal(){
@@ -180,6 +158,7 @@ public class ControlMenuCliente {
    public void creoFactura(){
       ColeccionFactura coleccionFactura = new ColeccionFactura();
       Factura factura = new Factura(cliente, precioTotal());
+      coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
       coleccionFactura.agregar(factura);
       coleccionFactura.cargarArchivo("factura.json");
    }
@@ -195,7 +174,7 @@ public class ControlMenuCliente {
       coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
       for (Factura factura : coleccionFactura.getFacturas()){
          if (factura.getComprador().getDni() == cliente.getDni()){
-            stringBuilder.append(coleccionFactura.toString());
+            stringBuilder.append(coleccionFactura.mostrar());
          }
       }
 
@@ -204,11 +183,11 @@ public class ControlMenuCliente {
 
    public void mostrarFacturas(){
       StringBuilder stringBuilder = facturasCliente();
-      if (stringBuilder == null){
+      if (stringBuilder.isEmpty()){
          System.out.println("Usted no ha hecho compras");
       }
       else {
-         System.out.println(stringBuilder);
+         System.out.println(stringBuilder.toString());
       }
    }
 

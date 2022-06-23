@@ -25,13 +25,12 @@ public class Usuario implements Serializable {
         this.idUsuario = contador;
         contador++;
     }
-    public Usuario(){
-        this.idUsuario = contador;
-        contador++;
+
+    public Usuario() {
     }
 
     public String mostrar() {
-        return "> DNI Usuario\nNombre y Apellido: " + nombreYapellido + "\nId usuario: " + idUsuario + "\n";
+        return "DNI Usuario:" + dni +  " \nNombre y Apellido: " + nombreYapellido + "\nId usuario: " + idUsuario + "\n";
     }
 
     //GETTERS---------------------------------------------------------------
@@ -53,12 +52,12 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "\nUsuario: " +
-                "nombreYapellido = " + nombreYapellido +
-                ", dni = " + dni +
-                ", password = " + password +
-                ", idUsuario = " + idUsuario +
-                "\n\n";
+        return "Usuario{" +
+                "nombreYapellido='" + nombreYapellido + '\'' +
+                ", dni=" + dni +
+                ", password='" + password + '\'' +
+                ", idUsuario=" + idUsuario +
+                '}';
     }
 
     //SETTERS---------------------------------------------------------------
@@ -81,13 +80,6 @@ public class Usuario implements Serializable {
 
     public static void setContador(int contador) {
         Usuario.contador = contador;
-    }
-
-    public boolean equalsLogin(int dni, String password) {
-        if (dni == this.dni && password == this.password){
-            return true;
-        }
-        return false;
     }
 
     @Override

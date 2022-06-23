@@ -1,5 +1,6 @@
 package Usuario.app;
 
+import Excepciones.CantidadExcedidaExcepcion;
 import Excepciones.ProductoExistenteExcepcion;
 import Producto.app.Bebida;
 import Producto.app.Comida;
@@ -28,17 +29,14 @@ public class Cliente extends Usuario implements Serializable {
 
     }
 
-    public boolean registro(Usuario usuario) {
-        return false;
-    }
-
-    public String listar() {
-        return toString();
-    }
-
     @Override
     public String toString() {
-        return super.toString();
+        return super.toString() +
+                "Cliente{" +
+                "comidas=" + comidas +
+                ", bebidas=" + bebidas +
+                ", tecnologias=" + tecnologias +
+                '}';
     }
 
     public String mostrar() {
@@ -113,6 +111,17 @@ public class Cliente extends Usuario implements Serializable {
 
     public void setTecnologias(ArrayList<Tecnologia> tecnologias) {
         this.tecnologias = tecnologias;
+    }
+
+    public int verificoCantidadLlevada(Producto producto, int cantLlevada) throws CantidadExcedidaExcepcion {
+        if (producto.getCantLlevada() + cantLlevada <= getCapacidad()){
+            cantLlevada = cantLlevada + producto.getCantLlevada();
+        }
+        else {
+            throw new CantidadExcedidaExcepcion("");
+        }
+
+        return cantLlevada;
     }
 
     public StringBuilder mostrarBebidas(){

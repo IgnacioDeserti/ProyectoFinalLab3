@@ -40,4 +40,15 @@ public class Comida extends Producto implements Serializable {
     public void setTipoProducto(int tipoProducto) {
         this.tipoProducto = tipoProducto;
     }
+
+    //GETTERS-----------------------------------------------------
+
+
+    public float getGramos() {
+        return gramos;
+    }
+
+    public int getTipoProducto() {
+        return tipoProducto;
+    }
 }

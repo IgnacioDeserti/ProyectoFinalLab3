@@ -24,10 +24,11 @@ public class Main {
     public static void main(String[] args){
         teclado = new Scanner(System.in);
 
-        ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
+        /*ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         Deposito deposito = new Deposito();
         PantallaInicio pantallaInicio = new PantallaInicio();
         PaginaDeCompra paginaDeCompra = new PaginaDeCompra();
+         */
 
 
         /*pantallaInicio.setBounds(0,0,400,400);
@@ -35,14 +36,15 @@ public class Main {
         pantallaInicio.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
         pantallaInicio.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.*/
 
-        paginaDeCompra.setBounds(0,0,600,600);
+        /*paginaDeCompra.setBounds(0,0,600,600);
         paginaDeCompra.setVisible(true); //Si queres que se vea true, si no false.
         paginaDeCompra.setLocationRelativeTo(null); //Al ejecutar se pone en el centro.
         paginaDeCompra.setResizable(false); //Dar permiso a que el usuario pueda modificar el interfaz o no.
 
+         */
 
-        /*InicioSesion inicioSesion = new InicioSesion();
-        inicioSesion.menuInicioSesion();*/
+        InicioSesion inicioSesion = new InicioSesion();
+        inicioSesion.menuInicioSesion();
 
         //ControlMenuAdmin controlMenuAdmin = new ControlMenuAdmin(new Admin("Lionel Messi", 1, "SoyDiosnel10",10));
         //controlMenuAdmin.menuGralAdmin();
@@ -58,12 +60,15 @@ public class Main {
 
 
 
+
+
+
         /*Deposito deposito1 = new Deposito();
-        deposito1.agregar(new Comida("Hamburguesas Paty", 49.99f, 1, 20, 300));
+        //deposito1.agregar(new Comida("Hamburguesas Paty", 49.99f, 1, 20, 300));
         //deposito1.agregar(new Bebida("Coca Cola", 49.99f, 20, 150));
-        //deposito1.agregar(new Tecnologia("Televisor LG", 49.99f, 5, true));
+        deposito1.agregar(new Tecnologia("Televisor LG", 49.99f, 5, true));
         System.out.println(deposito1.mostrar());
-        deposito1.cargarArchivo("comida.bin");
+        deposito1.cargarArchivo("tecnologia.bin");
          */
 
 
@@ -72,11 +77,12 @@ public class Main {
         //coleccionUsuario1.setUsuariosHashMap(coleccionUsuario1.leerArchivo("usuarios.bin"));
         //System.out.println(coleccionUsuario1.mostrar());
 
-        /*coleccionUsuario1.agregar(new Admin("Lionel Messi", 1, "SoyDiosnel10", 1));/*
+        /*coleccionUsuario1.agregar(new Admin("Lionel Messi", 1, "SoyDiosnel10", 1));
         coleccionUsuario1.agregar(new Cliente("Ignacio Deserti", 44667880, "Daleboka123"));
         coleccionUsuario1.agregar(new Cliente("Ignacio Tosini", 44456789, "Zurdosie7e"));
         System.out.println(coleccionUsuario1.mostrar());
-        coleccionUsuario1.cargarArchivo("usuarios.bin");*/
+        coleccionUsuario1.cargarArchivo("usuarios.bin");
+         */
 
         //coleccionUsuario1.setUsuariosHashMap(coleccionUsuario1.leerArchivo("usuarios.bin"));
         //System.out.println(coleccionUsuario1.mostrar());

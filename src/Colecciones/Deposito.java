@@ -1,5 +1,6 @@
 package Colecciones;
 
+import Excepciones.CantidadInvalidaExcepcion;
 import Factura.Factura;
 import Producto.app.Bebida;
 import Producto.app.Comida;
@@ -137,6 +138,17 @@ public class Deposito implements I_Coleccion<Producto>, Serializable {
         }
 
         return false;
+    }
+
+    public Producto verificoStock(Producto producto, int cantidad) throws CantidadInvalidaExcepcion {
+        if (cantidad > producto.getStock()){
+            throw new CantidadInvalidaExcepcion("");
+        }
+        else{
+            producto.setCantLlevada(cantidad);
+        }
+
+        return producto;
     }
 
     public ArrayList<Bebida> ajustoStockBebida(Cliente cliente){

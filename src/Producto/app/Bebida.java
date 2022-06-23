@@ -34,4 +34,11 @@ public class Bebida extends Producto implements Serializable {
     public void setMl(int ml) {
         this.ml = ml;
     }
+
+    //GETTERS---------------------------------------------------------
+
+
+    public Integer getMl() {
+        return ml;
+    }
 }

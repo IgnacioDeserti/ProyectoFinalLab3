@@ -1,10 +1,10 @@
 package ClasesControladoras;
 
+import Colecciones.ColeccionFactura;
+import Colecciones.ColeccionUsuario;
 import Colecciones.Deposito;
-import Excepciones.ArchivoIncorrectoExcepcion;
-import Excepciones.EliminarExcepcion;
-import Excepciones.IdIncorrectoExcepcion;
-import Excepciones.ProductoExistenteExcepcion;
+import Excepciones.*;
+import Factura.Factura;
 import Usuario.app.Admin;
 import Producto.app.Bebida;
 import Producto.app.Comida;
@@ -60,6 +60,12 @@ public class ControlMenuAdmin implements Serializable {
                 case 5 -> {
                     System.out.println(admin.verUsuarios());
                 }
+                case 6 -> {
+                    muestroFacturas();
+                }
+                case 7 -> {
+                    System.out.println(muestroFacturasPorUsuario());
+                }
                 case 0 -> {
                     System.out.println("Hasta luego, capitan!!!");
                 }
@@ -91,7 +97,7 @@ public class ControlMenuAdmin implements Serializable {
             op = seleccionoArchi();
             System.out.println(admin.mostrarDeposito(op));
         } catch (ArchivoIncorrectoExcepcion e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.out.println(e.getMessage());
             funcionVerDeposito();
         }
     }
@@ -124,12 +130,28 @@ public class ControlMenuAdmin implements Serializable {
         String nombreProducto = teclado.nextLine();
         System.out.println("Ingrese el precio del producto");
         float precioProducto = teclado.nextFloat();
+        while (precioProducto < 1){
+            System.out.println("Precio invalido, ingrese otro");
+            precioProducto = teclado.nextFloat();
+        }
         System.out.println("Ingrese el stock del producto");
         int stock = teclado.nextInt();
+        while (stock < 0){
+            System.out.println("Stock invalido, ingrese otro");
+            stock = teclado.nextInt();
+        }
         System.out.println("Ingrese el tipo de producto (1 frio | 2 seco)");
         int tipoProducto = teclado.nextInt();
+        while (tipoProducto != 1 && tipoProducto != 2){
+            System.out.println("Tipo de producto invalido, ingrese otro");
+            tipoProducto = teclado.nextInt();
+        }
         System.out.println("Ingrese los gramos del producto");
         float gramos = teclado.nextFloat();
+        while (gramos < 1){
+            System.out.println("Gramos invalidos, ingrese otro valor");
+            gramos = teclado.nextFloat();
+        }
 
         Comida comida = new Comida(nombreProducto, precioProducto, tipoProducto, stock, gramos);
 
@@ -142,10 +164,22 @@ public class ControlMenuAdmin implements Serializable {
         String nombreProducto = teclado.nextLine();
         System.out.println("Ingrese el precio del producto");
         float precioProducto = teclado.nextFloat();
+        while (precioProducto < 1){
+            System.out.println("Precio invalido, ingrese otro");
+            precioProducto = teclado.nextFloat();
+        }
         System.out.println("Ingrese el stock del producto");
         int stock = teclado.nextInt();
+        while (stock < 0){
+            System.out.println("Stock invalido, ingrese otro");
+            stock = teclado.nextInt();
+        }
         System.out.println("Ingrese los ml del producto");
         int ml = teclado.nextInt();
+        while (ml < 1){
+            System.out.println("Ml invalidos, ingrese otro");
+            ml = teclado.nextInt();
+        }
 
         Bebida bebida = new Bebida(nombreProducto, precioProducto, stock, ml);
 
@@ -158,8 +192,16 @@ public class ControlMenuAdmin implements Serializable {
         String nombreProducto = teclado.nextLine();
         System.out.println("Ingrese el precio del producto");
         float precioProducto = teclado.nextFloat();
+        while (precioProducto < 1){
+            System.out.println("Precio invalido, ingrese otro");
+            precioProducto = teclado.nextFloat();
+        }
         System.out.println("Ingrese el stock del producto");
         int stock = teclado.nextInt();
+        while (stock < 0){
+            System.out.println("Stock invalido, ingrese otro");
+            stock = teclado.nextInt();
+        }
         System.out.println("Si el producto es electrico ingrese si, en caso contrario ingrese no");
         teclado.nextLine();
         String aux = teclado.nextLine();
@@ -181,10 +223,10 @@ public class ControlMenuAdmin implements Serializable {
                 System.out.println("Genial! Los cambios se veran modificados al acceder al deposito de nuevo");
             }
         } catch (ArchivoIncorrectoExcepcion e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.out.println(e.getMessage());
             funcionAgregarProducto();
         } catch (ProductoExistenteExcepcion e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
+            System.out.println(e.getMessage());
             funcionAgregarProducto();
         }
     }
@@ -210,24 +252,43 @@ public class ControlMenuAdmin implements Serializable {
                 case 2: {
                     System.out.println("Ingrese el precio del producto");
                     float precioProducto = teclado.nextFloat();
+                    while (precioProducto < 1){
+                        System.out.println("Precio invalido, por favor ingrese otro");
+                        precioProducto = teclado.nextFloat();
+                    }
                     comida.setPrecio(precioProducto);
                     break;
                 }
                 case 3: {
                     System.out.println("Ingrese el stock del producto");
                     int stock = teclado.nextInt();
+                    while (stock < 0){
+                        System.out.println("Stock invalido, ingrese otro");
+                        stock = teclado.nextInt();
+                    }
                     comida.setStock(stock);
+                    if (comida.getStock() > 0){
+                        comida.setDisponible(true);
+                    }
                     break;
                 }
                 case 4: {
                     System.out.println("Ingrese el tipo de producto (1 frio | 2 seco)");
                     int tipoProducto = teclado.nextInt();
+                    while (tipoProducto != 1 && tipoProducto != 2){
+                        System.out.println("Tipo de producto invalido, ingrese uno nuevo");
+                        tipoProducto = teclado.nextInt();
+                    }
                     comida.setTipoProducto(tipoProducto);
                     break;
                 }
                 case 5: {
                     System.out.println("Ingrese los gramos del producto");
                     float gramos = teclado.nextFloat();
+                    while (gramos < 1){
+                        System.out.println("Gramos invalidos, ingrese otro valor");
+                        gramos = teclado.nextFloat();
+                    }
                     comida.setGramos(gramos);
                     break;
                 }
@@ -261,18 +322,33 @@ public class ControlMenuAdmin implements Serializable {
                 case 2: {
                     System.out.println("Ingrese el precio del producto");
                     float precioProducto = teclado.nextFloat();
+                    while (precioProducto < 1){
+                        System.out.println("Precio invalido, ingrese otro");
+                        precioProducto = teclado.nextFloat();
+                    }
                     bebida.setPrecio(precioProducto);
                     break;
                 }
                 case 3: {
                     System.out.println("Ingrese el stock del producto");
                     int stock = teclado.nextInt();
+                    while (stock < 0){
+                        System.out.println("Stock invalido, ingrese otro");
+                        stock = teclado.nextInt();
+                    }
                     bebida.setStock(stock);
+                    if (bebida.getStock() > 0){
+                        bebida.setDisponible(true);
+                    }
                     break;
                 }
                 case 4: {
                     System.out.println("Ingrese los ml del prooducto");
                     int ml = teclado.nextInt();
+                    while (ml < 1){
+                        System.out.println("Ml invalidos, ingrese otro");
+                        ml = teclado.nextInt();
+                    }
                     bebida.setMl(ml);
                     break;
                 }
@@ -304,13 +380,24 @@ public class ControlMenuAdmin implements Serializable {
             case 2: {
                 System.out.println("Ingrese el precio del producto");
                 float precioProducto = teclado.nextFloat();
+                while (precioProducto < 1){
+                    System.out.println("Precio invalido, ingrese otro");
+                    precioProducto = teclado.nextFloat();
+                }
                 tecnologia.setPrecio(precioProducto);
                 break;
             }
             case 3: {
                 System.out.println("Ingrese el stock del producto");
                 int stock = teclado.nextInt();
+                while (stock < 0){
+                    System.out.println("Stock invalido, ingrese otro");
+                    stock = teclado.nextInt();
+                }
                 tecnologia.setStock(stock);
+                if (tecnologia.getStock() > 0){
+                    tecnologia.setDisponible(true);
+                }
                 break;
             }
             case 4: {
@@ -391,5 +478,31 @@ public class ControlMenuAdmin implements Serializable {
             eliminoProducto();
         }
     }
+
+    public void muestroFacturas(){
+        ColeccionFactura coleccionFactura = new ColeccionFactura();
+        coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
+        System.out.println(coleccionFactura.mostrar());
+    }
+
+    public StringBuilder muestroFacturasPorUsuario(){
+        StringBuilder stringBuilder = new StringBuilder();
+        System.out.println(admin.verUsuarios());
+        ColeccionFactura coleccionFactura = new ColeccionFactura();
+        coleccionFactura.setFacturas(coleccionFactura.leerArchivo("factura.json"));
+        System.out.println("Ingrese el dni del usuario el cual quiere ver una factura");
+        int dni = teclado.nextInt();
+        for (Factura factura : coleccionFactura.getFacturas()){
+            if (factura.getComprador().getDni() == dni){
+                stringBuilder.append(coleccionFactura.mostrar());
+            }
+        }
+        if (stringBuilder.isEmpty()){
+            System.out.println("El usuario no existe o no ha realizado compras");
+        }
+
+        return stringBuilder;
+    }
+
 
 }

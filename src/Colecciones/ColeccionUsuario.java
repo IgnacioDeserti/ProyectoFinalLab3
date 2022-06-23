@@ -53,7 +53,6 @@ public class ColeccionUsuario implements I_Coleccion<Usuario> {
     }
 
     @Override
-
     public boolean agregar(Usuario persona) {
         boolean rta = false;
         Usuario aux = buscar(persona.getDni());

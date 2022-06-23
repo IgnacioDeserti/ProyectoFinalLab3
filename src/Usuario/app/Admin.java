@@ -21,18 +21,14 @@ public class Admin extends Usuario implements Serializable{
 
     }
 
-    public boolean registro(Usuario usuario) {
-        return false;
-    }
-
-    public String listar() {
-        return toString();
+    public int getCodigoSecreto() {
+        return codigoSecreto;
     }
 
     @Override
     public String toString() {
         return super.toString()+
-                "Codigo Secreto: " + codigoSecreto +"\n\n";
+                "Codigo Secreto: " + codigoSecreto +"\n";
     }
 
 

@@ -1,10 +1,7 @@
 package ClasesControladoras;
 
 import Colecciones.ColeccionUsuario;
-import Excepciones.PasswordIncorrecto;
-import Excepciones.PasswordInvalido;
-import Excepciones.UsuarioExistente;
-import Excepciones.UsuarioIncorrecto;
+import Excepciones.*;
 import Usuario.app.Admin;
 import Usuario.app.Cliente;
 import Usuario.app.Usuario;
@@ -37,7 +34,13 @@ public class InicioSesion {
                         ejecutoMenuAdecuado(usuario);
                         break;
                     }
-
+                    case 0 : {
+                        System.out.println("Gracias por la visita, hasta la proxima!!!!!");
+                        break;
+                    }
+                    default: {
+                        System.out.println("Ingrese una opcion valida");
+                    }
 
                 }
             }while (opcion != 0);
@@ -91,21 +94,37 @@ public class InicioSesion {
         return usuario;
     }
 
+    public void codigoSecreto(Admin admin) throws CodigoInvalidoException {
+        System.out.println("Ingrese su codigo secreto");
+        int codigo = teclado.nextInt();
+        if (codigo != admin.getCodigoSecreto()){
+            throw new CodigoInvalidoException("Codigo incorrecto, no sabotee nuestra base");
+        }
+    }
+
     public void ejecutoMenuAdecuado(Usuario usuario){
         if (usuario instanceof Admin){
-            ControlMenuAdmin controlMenuAdmin = new ControlMenuAdmin((Admin) usuario);
-            controlMenuAdmin.menuGralAdmin();
+            try {
+                codigoSecreto((Admin) usuario);
+                ControlMenuAdmin controlMenuAdmin = new ControlMenuAdmin((Admin) usuario);
+                controlMenuAdmin.menuGralAdmin();
+            } catch (CodigoInvalidoException e) {
+                System.out.println(e.getMessage());
+            }
         }else {
             ControlMenuCliente controlMenuCliente = new ControlMenuCliente((Cliente) usuario);
             controlMenuCliente.menuCliente();
         }
     }
 
-    public int verificoDniRegistro() throws UsuarioExistente {
+    public int verificoDniRegistro() throws UsuarioExistente, DniInvalidoExcepcion {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
         System.out.println("Ingrese su dni");
         int dni = teclado.nextInt();
+        if (dni < 1000000 || dni > 99999999){
+            throw new DniInvalidoExcepcion("Dni no valido, ingrese otro");
+        }
         if (coleccionUsuario.buscar(dni) != null){
             throw new UsuarioExistente("Ya existe un usuario con ese dni");
         }
@@ -140,6 +159,9 @@ public class InicioSesion {
             System.out.println(e.getMessage());
             cliente = registro();
         } catch (PasswordInvalido e) {
+            System.out.println(e.getMessage());
+            cliente = registro();
+        } catch (DniInvalidoExcepcion e) {
             System.out.println(e.getMessage());
             cliente = registro();
         }

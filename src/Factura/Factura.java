@@ -49,11 +49,11 @@ public class Factura {
     }
 
     public String mostrar() {
-        return "Factura: "+
-                "\nCliente: " + comprador.listar() +
+        return "\n--------------Factura-------------- "+
+                "\nCliente: " + comprador.mostrar() +
                 "\nDetalle: " + comprador.mostrarBebidas() +
                 "\n" + comprador.mostrarComidas() +
                 "\n" + comprador.mostrarTecnologias() +
-                "\nTotal: " + total;
+                "\nTotal: " + total + "\n\n";
     }
 }

@@ -101,4 +101,16 @@ public abstract class Producto implements Serializable {
     public Float getPrecio() {
         return precio * cantLlevada;
     }
+
+    public static int getContador() {
+        return contador;
+    }
+
+    public String getNombreProduto() {
+        return nombreProduto;
+    }
+
+    public Boolean getDisponible() {
+        return isDisponible;
+    }
 }
