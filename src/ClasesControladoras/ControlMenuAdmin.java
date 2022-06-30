@@ -40,6 +40,8 @@ public class ControlMenuAdmin implements Serializable {
                 5 para ver los usuarios existentes
                 6 para ver las facturas existentes
                 7 para ver facturas por usuario
+                8 para cambiar la password
+                9 para cambiar el codigo secreto
                 0 para salir del programa\n\n""");
 
             opcion = teclado.nextInt();
@@ -65,6 +67,13 @@ public class ControlMenuAdmin implements Serializable {
                 }
                 case 7 -> {
                     System.out.println(muestroFacturasPorUsuario());
+                }
+                case 8 -> {
+                    teclado.nextLine();
+                    cambioPasswordAdmin();
+                }
+                case 9 -> {
+                    cambioCodigoSecreto();
                 }
                 case 0 -> {
                     System.out.println("Hasta luego, capitan!!!");
@@ -504,4 +513,29 @@ public class ControlMenuAdmin implements Serializable {
         return stringBuilder;
     }
 
+    public void cambioPasswordAdmin(){
+        try {
+            System.out.println("Ingrese nueva password");
+            String password = teclado.nextLine();
+            password = admin.cambioPassword(password);
+            ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
+            coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
+            coleccionUsuario.getUsuariosHashMap().get(admin.getDni()).setPassword(password);
+            coleccionUsuario.cargarArchivo("usuarios.bin");
+            System.out.println("Password cambiada con exito!!");
+        } catch (PasswordInvalidoException e) {
+            System.out.println(e.getMessage());
+            cambioPasswordAdmin();
+        }
+    }
+
+    public void cambioCodigoSecreto(){
+        System.out.println("Ingrese nuevo codigo secreto");
+        int codigo = teclado.nextInt();
+        ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
+        coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
+        admin.setCodigoSecreto(codigo);
+        coleccionUsuario.getUsuariosHashMap().replace(admin.getDni(), admin);
+        coleccionUsuario.cargarArchivo("usuarios.bin");
+    }
 }

@@ -72,4 +72,8 @@ public class Admin extends Usuario implements Serializable{
 
         return coleccionUsuario.mostrar();
     }
+
+    public void setCodigoSecreto(int codigoSecreto) {
+        this.codigoSecreto = codigoSecreto;
+    }
 }

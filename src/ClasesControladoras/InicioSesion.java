@@ -50,7 +50,7 @@ public class InicioSesion {
     public int verificoDniLogin() throws UsuarioIncorrectoException {
         ColeccionUsuario coleccionUsuario = new ColeccionUsuario();
         coleccionUsuario.setUsuariosHashMap(coleccionUsuario.leerArchivo("usuarios.bin"));
-        System.out.println("Ingrese su dni login");
+        System.out.println("Ingrese su dni");
         int dni = teclado.nextInt();
         if (coleccionUsuario.buscar(dni) == null){
             throw new UsuarioIncorrectoException("No hay un usuario registrado con ese dni");
